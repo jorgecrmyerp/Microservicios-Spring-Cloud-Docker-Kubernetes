@@ -13,7 +13,7 @@ drivers/
 *.jpg
 
 ##quito la carpeta de configuracion,esa va en su propio repositorio
-
+**/Documentacion curso/
 
 
 ### Eclipse ###
