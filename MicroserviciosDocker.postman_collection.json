@@ -1,0 +1,313 @@
+{
+	"info": {
+		"_postman_id": "d35c47e3-7e40-4cd7-83b0-0de94d60dad1",
+		"name": "MicroserviciosDocker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20953727"
+	},
+	"item": [
+		{
+			"name": "Alumnos",
+			"item": [
+				{
+					"name": "ListarAlumnos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001",
+							"host": [
+								"localhost"
+							],
+							"port": "8001"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaAlumnoPathVariable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AltaAlumno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n        \"nombre\": \"ALUMNO1\",\r\n        \"email\": \"email1@asdf.com\",\r\n        \"password\": \"PASSWORD1\",\r\n        \"createAt\": \"2022-10-29T15:41:00.383+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001",
+							"host": [
+								"localhost"
+							],
+							"port": "8001"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaAlumnoRequestParam",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/request-param/?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"request-param",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizaAlumno",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"nombre\": \"ALUMNO1\",\r\n    \"email\": \"email2@asdf.com\",\r\n    \"password\": \"PASSWORD1\",\r\n    \"createAt\": \"2022-10-29T15:59:42.896+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorraAlumnoId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorraAlumnoObjeto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 2,\r\n        \"nombre\": \"ALUMNO2\",\r\n        \"email\": \"email2@asdf.com\",\r\n        \"password\": \"PASSWORD2\",\r\n        \"createAt\": \"2022-10-29T16:03:25.496+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8001/borra-alumno",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"borra-alumno"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cursos",
+			"item": [
+				{
+					"name": "ListarCursos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8002",
+							"host": [
+								"localhost"
+							],
+							"port": "8002"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AltaCursos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n        \"nombre\": \"Curso1\",\r\n        \"createAt\": \"2022-10-29T16:57:45.352+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002",
+							"host": [
+								"localhost"
+							],
+							"port": "8002"
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizaCursos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n        \"nombre\": \"Curso99\",\r\n        \"createAt\": \"2022-10-29T16:57:45.352+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorraCursos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \r\n        \"nombre\": \"Curso99\",\r\n        \"createAt\": \"2022-10-29T16:57:45.352+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaCursosPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8002/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListaCursoNombreDescendente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8002/por-nombre/",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"por-nombre",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -17,7 +17,8 @@
 	</properties>
 	<packaging>pom</packaging>
 	<modules>
-	<module>AB-micro-alumnos</module>
+		<module>AB-servicio-alumnos</module>
+		<module>AB-servicio-cursos</module>
 	</modules>
-	
+
 </project>
