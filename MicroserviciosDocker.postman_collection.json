@@ -418,6 +418,31 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ListarAlumnosPorCurso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8001/alumnos-por-curso?ids=1,2,5",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"alumnos-por-curso"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "1,2,5",
+									"description": "cursos de los que busca alumnos"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
