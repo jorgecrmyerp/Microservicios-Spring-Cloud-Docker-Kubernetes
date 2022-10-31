@@ -74,5 +74,13 @@ public interface IAlumnoService {
 	 * @return true, if successful
 	 */
 	public boolean existsByEmail(String email);
+	
+	/**
+	 * Find all alumos by id list.
+	 *
+	 * @param ids the ids
+	 * @return the iterable
+	 */
+	public Iterable<Alumno> findAllById(Iterable<Long> ids);
 
 }

@@ -18,41 +18,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "cursos_alumnos")
 
-/**
- * Instantiates a new curso alumno.
- */
 
-/**
- * Instantiates a new curso alumno.
- */
 @NoArgsConstructor
 
-/**
- * Instantiates a new curso alumno.
- *
- * @param id       the id
- * @param alumnoId the alumno id
- */
 
-/**
- * Instantiates a new curso alumno.
- *
- * @param id       the id
- * @param alumnoId the alumno id
- */
 @AllArgsConstructor
 
-/**
- * To string.
- *
- * @return the java.lang. string
- */
 
-/**
- * To string.
- *
- * @return the java.lang. string
- */
 @Data
 
 public class CursoAlumno {

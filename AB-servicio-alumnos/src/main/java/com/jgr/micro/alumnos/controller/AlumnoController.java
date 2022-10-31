@@ -1,6 +1,7 @@
 package com.jgr.micro.alumnos.controller;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jgr.micro.alumnos.models.Alumno;
 import com.jgr.micro.alumnos.models.service.IAlumnoService;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AlumnoController.
  */
@@ -213,6 +215,20 @@ public class AlumnoController {
 		}
 		iAlumnoService.delete(al);
 		return ResponseEntity.noContent().build();
+		
+	}
+	
+	
+	/**
+	 * Alumnos curso request param.
+	 *a partir de una lista de long con los id de alumnos devuelve el detalle de los alumnos
+	 * @param ids the ids
+	 * @return the response entity
+	 */
+	@GetMapping("/alumnos-por-curso")
+	public ResponseEntity<?> alumnosCursoRequestParam(@Valid @RequestParam List<Long> ids) {
+		
+		return ResponseEntity.ok(iAlumnoService.findAllById(ids));
 		
 	}
 

@@ -306,6 +306,118 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "AltayAsignarAlumnoCurso",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 1,\r\n        \"nombre\": \"ALUMNO1\",\r\n        \"email\": \"email1@asdf.com\",\r\n        \"password\": \"PASSWORD1\",\r\n        \"createAt\": \"2022-10-31T15:39:30.344+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/asignar-alumno/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"asignar-alumno",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AltaAlumnoCurso",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \r\n        \"nombre\": \"ALUMNO9\",\r\n        \"email\": \"email9@asdf.com\",\r\n        \"password\": \"PASSWORD9\",\r\n        \"createAt\": \"2022-10-31T15:39:30.344+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/alta-alumno/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"alta-alumno",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarRelacionAlumnoCurso",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 1,\r\n        \"nombre\": \"ALUMNO1\",\r\n        \"email\": \"email1@asdf.com\",\r\n        \"password\": \"PASSWORD1\",\r\n        \"createAt\": \"2022-10-31T15:39:30.344+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/borrar-alumno/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"borrar-alumno",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AltaAlumnoCursoError",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 1,\r\n        \"nombre\": \"ALUMNO1\",\r\n        \"email\": \"email1@asdf.com\",\r\n        \"password\": \"PASSWORD1\",\r\n        \"createAt\": \"2022-10-31T15:39:30.344+00:00\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8002/alta-alumno/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"alta-alumno",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

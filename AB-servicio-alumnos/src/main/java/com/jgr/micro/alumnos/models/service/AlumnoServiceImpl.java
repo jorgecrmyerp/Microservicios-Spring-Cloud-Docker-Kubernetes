@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jgr.micro.alumnos.models.Alumno;
 import com.jgr.micro.alumnos.models.repository.IAlumnoRepository;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AlumnoServiceImpl.
  */
@@ -87,20 +88,47 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	 * @return the optional
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<Alumno> findByEmail(String email) {
 		return alumnoRepository.findByEmail(email);
 	}
 
+	/**
+	 * Por email.
+	 *
+	 * @param email the email
+	 * @return the optional
+	 */
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<Alumno> porEmail(String email) {
- 
+
 		return alumnoRepository.porEmail(email);
 	}
 
+	/**
+	 * Exists by email.
+	 *
+	 * @param email the email
+	 * @return true, if successful
+	 */
 	@Override
+	@Transactional(readOnly = true)
 	public boolean existsByEmail(String email) {
-		
+
 		return alumnoRepository.existsByEmail(email);
+	}
+
+	/**
+	 * Find all Alumnos by id.
+	 *
+	 * @param ids the ids
+	 * @return the iterable
+	 */
+	@Override
+	@Transactional
+	public Iterable<Alumno> findAllById(Iterable<Long> ids) {
+		return alumnoRepository.findAllById(ids);
 	}
 
 }

@@ -56,7 +56,7 @@ public interface ICursoService {
 	 * @param cursoid the cursoid
 	 * @return the optional
 	 */
-	public Optional<Alumno> asignarAlumno(Alumno alumno,Long cursoid);
+	public Optional<Alumno> asignarAlumnoCurso(Alumno alumno,Long cursoid);
 	
 	
 	/**
@@ -67,7 +67,7 @@ public interface ICursoService {
 	 * @param cursoid the cursoid
 	 * @return the optional
 	 */
-	public Optional<Alumno> altaAlumno(Alumno alumno,Long cursoid);
+	public Optional<Alumno> altaAlumnoCurso(Alumno alumno,Long cursoid);
 	
 	/**
 	 * Eliminar relacion alumno curso.
@@ -78,5 +78,11 @@ public interface ICursoService {
 	 */
 	public Optional<Alumno> eliminarRelacionAlumnoCurso(Alumno alumno,Long cursoid);
 	
-
+	/**
+	 * Le pasamos el id de un curso y nos devuelve los alumnos relacionados.
+	 *
+	 * @param cursoId the curso id
+	 * @return the optional
+	 */
+	public Optional <Curso> alumnosCursoporIdCurso(Long cursoId);
 }

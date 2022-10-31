@@ -1,5 +1,7 @@
 package com.jgr.micro.cursos.client.rest.feign;
 
+import java.util.List;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.jgr.micro.cursos.models.entity.Alumno;
 
+// TODO: Auto-generated Javadoc
 /**
  * Relacion con el microservicio Alumnos.
  */
@@ -32,5 +35,15 @@ public interface AlumnoFeign {
 	 */
 	@PostMapping("/")
 	public Alumno altaAlumno(@RequestBody Alumno al);
+	
+	
+	/**
+	 * Detalle alumnos pasando una lista de ids.
+	 *
+	 * @param ids lista de the ids de alumnos
+	 * @return the iterable
+	 */
+	@GetMapping("/alumnos-por-curso")
+	public Iterable<Alumno> alumnosCursoRequestParam(Iterable<Long> ids);
 
 }

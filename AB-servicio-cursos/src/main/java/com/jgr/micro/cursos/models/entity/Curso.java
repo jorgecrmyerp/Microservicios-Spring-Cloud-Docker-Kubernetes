@@ -31,24 +31,7 @@ import lombok.Data;
 @Table(name = "cursos")
 //@NoArgsConstructor
 
-/**
- * Instantiates a new curso.
- *
- * @param id           the id
- * @param nombre       the nombre
- * @param createAt     the create at
- * @param cursoAlumnos the curso alumnos
- */
 
-/**
- * Instantiates a new curso.
- *
- * @param id           the id
- * @param nombre       the nombre
- * @param createAt     the create at
- * @param cursoAlumnos the curso alumnos
- * @param alumnos      the alumnos
- */
 @AllArgsConstructor
 //@Getter
 //@Setter
