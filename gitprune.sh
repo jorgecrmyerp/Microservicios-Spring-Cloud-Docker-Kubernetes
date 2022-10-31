@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-10-31 4-TERMINADO VALIDACIONES"
+message="$(date)2022-10-31 HAY QUE TERMINAR EL 36"
 fi
 
 start=`date +%s`
