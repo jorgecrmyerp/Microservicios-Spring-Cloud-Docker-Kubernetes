@@ -4,20 +4,41 @@ import java.util.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Alumno.
  */
 @Entity
 @Table(name="alumnos")
+
+/**
+ * Instantiates a new alumno.
+ */
 @NoArgsConstructor
+
+/**
+ * Instantiates a new alumno.
+ *
+ * @param id the id
+ * @param nombre the nombre
+ * @param email the email
+ * @param password the password
+ * @param createAt the create at
+ */
 @AllArgsConstructor
 
+/**
+ * To string.
+ *
+ * @return the java.lang. string
+ */
 @Data
 public class Alumno {
 
@@ -26,17 +47,18 @@ public class Alumno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** The nombre. */
-	@NotEmpty(message="Error en el nombre")
+    /** The nombre. */    
+	@NotBlank//no admite blancos en el nombre,y no puede estar vacio
     private String nombre;
 
     /** The email. */
 	@NotEmpty(message="Email erroneo")
+	@Column(unique = true)
 	@Email
     private String email;
 
     /** The password. */	
-	@NotEmpty(message="La password no puede estar vacia")
+	@NotBlank
     private String password;
     
     /** The create at. */

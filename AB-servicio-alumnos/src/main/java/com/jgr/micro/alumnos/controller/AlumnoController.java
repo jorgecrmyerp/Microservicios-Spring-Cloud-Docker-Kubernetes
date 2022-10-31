@@ -1,10 +1,5 @@
 package com.jgr.micro.alumnos.controller;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -16,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jgr.micro.alumnos.models.Alumno;
 import com.jgr.micro.alumnos.models.service.IAlumnoService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AlumnoController.
  */
@@ -45,7 +40,6 @@ public class AlumnoController {
 	/**
 	 * Obtener alumno por id path variable.
 	 *
-	 * @param id the id
 	 * @return the response entity
 	 */
 	@GetMapping
@@ -95,26 +89,35 @@ public class AlumnoController {
 	/**
 	 * Actualiza alumno.
 	 *
-	 * @param al the al
-	 * @param id the id
+	 * @param al     the al
+	 * @param result the result
+	 * @param id     the id
 	 * @return the response entity
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<?> actualizaAlumno(@Valid @RequestBody Alumno al,  BindingResult result, @PathVariable Long id) {
-		
+	public ResponseEntity<?> actualizaAlumno(@Valid @RequestBody Alumno al, BindingResult result,
+			@PathVariable Long id) {
+
 		if (result.hasErrors()) {
-            return validar(result);
-        }
-		
+			return validar(result);
+		}
+
 		Optional<Alumno> o = iAlumnoService.findById(id);
 
 		if (!o.isPresent()) {
 			logger.debug("Microservicio Alumno->actualizaAlumno");
-
 			return ResponseEntity.notFound().build();
 		}
-		
+
 		Alumno alDb = o.get();
+
+		if (!al.getEmail().isEmpty() && !al.getEmail().equalsIgnoreCase(alDb.getEmail())
+				&& iAlumnoService.porEmail(al.getEmail()).isPresent()) {
+			return ResponseEntity.badRequest()
+					.body(Collections.singletonMap("mensaje", "Ya existe un alumno con ese email"));
+
+		}
+
 		alDb.setNombre(al.getNombre());
 		alDb.setEmail(al.getEmail());
 		alDb.setPassword(al.getPassword());
@@ -122,10 +125,21 @@ public class AlumnoController {
 
 	}
 
+    /**
+     * Validar.
+     *
+     * @param result the result
+     * @return the response entity
+     */
     private ResponseEntity<Map<String, String>> validar(BindingResult result) {
+    	
         Map<String, String> errores = new HashMap<>();
         result.getFieldErrors().forEach(err -> {
-            errores.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+        	errores.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+            errores.put("DefaultMessage", err.getDefaultMessage());
+            errores.put("Code", err.getCode());
+            errores.put("Name", err.getObjectName());
+            
         });
         return ResponseEntity.badRequest().body(errores);
     }
@@ -134,6 +148,7 @@ public class AlumnoController {
 	 * Alta alumno.
 	 *
 	 * @param al the al
+	 * @param result the result
 	 * @return the response entity
 	 */
 	@PostMapping
@@ -142,6 +157,12 @@ public class AlumnoController {
 		if (result.hasErrors()) {
             return validar(result);
         }
+		
+		if(!al.getEmail().isEmpty() && iAlumnoService.findByEmail(al.getEmail()).isPresent()) {
+			return ResponseEntity.badRequest().
+					body(Collections.singletonMap("mensaje","Ya existe un alumno con ese email"));
+			
+		}
 		
 		Alumno alDb = new Alumno();
 		alDb.setNombre(al.getNombre());

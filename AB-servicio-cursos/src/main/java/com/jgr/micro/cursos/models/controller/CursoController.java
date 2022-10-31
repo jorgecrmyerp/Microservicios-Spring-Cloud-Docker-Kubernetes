@@ -86,7 +86,11 @@ public class CursoController {
     private ResponseEntity<Map<String, String>> validar(BindingResult result) {
         Map<String, String> errores = new HashMap<>();
         result.getFieldErrors().forEach(err -> {
-            errores.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+        	errores.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+            errores.put("DefaultMessage", err.getDefaultMessage());
+            errores.put("Code", err.getCode());
+            errores.put("Name", err.getObjectName());
+            
         });
         return ResponseEntity.badRequest().body(errores);
     }

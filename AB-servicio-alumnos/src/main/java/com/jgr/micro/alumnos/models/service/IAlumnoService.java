@@ -50,5 +50,29 @@ public interface IAlumnoService {
 	public void delete(Alumno al);
 	
 	
+	/**
+	 * Find by email.
+	 *
+	 * @param email the email
+	 * @return the optional
+	 */
+	public Optional<Alumno> findByEmail(String email);
+	
+	/**
+	 * Por email.
+	 *
+	 * @param email the email
+	 * @return the optional
+	 */
+	public Optional <Alumno> porEmail(String email);
+	
+	
+	/**
+	 * Exist by email.
+	 *
+	 * @param email the email
+	 * @return true, if successful
+	 */
+	public boolean existsByEmail(String email);
 
 }

@@ -71,13 +71,36 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	/**
 	 * Delete.
 	 *
-	 * @param Al the Alumno
+	 * @param al the al
 	 */
 	@Override
 	@Transactional
 	public void delete(Alumno al) {
 		alumnoRepository.delete(al);
 
+	}
+
+	/**
+	 * Find by email.
+	 *
+	 * @param email the email
+	 * @return the optional
+	 */
+	@Override
+	public Optional<Alumno> findByEmail(String email) {
+		return alumnoRepository.findByEmail(email);
+	}
+
+	@Override
+	public Optional<Alumno> porEmail(String email) {
+ 
+		return alumnoRepository.porEmail(email);
+	}
+
+	@Override
+	public boolean existsByEmail(String email) {
+		
+		return alumnoRepository.existsByEmail(email);
 	}
 
 }
