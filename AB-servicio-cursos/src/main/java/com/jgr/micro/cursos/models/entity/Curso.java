@@ -22,6 +22,9 @@ import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 /**
@@ -30,12 +33,10 @@ import lombok.Data;
 @Entity
 @Table(name = "cursos")
 //@NoArgsConstructor
-
-
 @AllArgsConstructor
-//@Getter
-//@Setter
-@Data
+@Getter
+@Setter
+
 public class Curso {
 
 	/** The id. */
@@ -95,11 +96,9 @@ public class Curso {
 	 * @param cursoAlumno the curso alumno
 	 */
 	public void removeCursoAlumno(CursoAlumno cursoAlumno) {
-		System.out.println("****EN CLASE CURSO antes****"+cursoAlumno.toString());
-		cursoAlumnos.forEach(System.out::println);
+		
 		cursoAlumnos.remove(cursoAlumno);
-		System.out.println("****EN CLASE CURSO despues****");
-		cursoAlumnos.forEach(System.out::println);
+		
 	}
 
 	/**
@@ -138,22 +137,6 @@ public class Curso {
 		this.alumnos = alumnos;
 	}
 
-	/**
-	 * Hash code.
-	 *
-	 * @return the int
-	 */
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	/**
-	 * Equals.
-	 *
-	 * @param obj the obj
-	 * @return true, if successful
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -165,5 +148,8 @@ public class Curso {
 		Curso other = (Curso) obj;
 		return Objects.equals(this.id, other.id);
 	}
+
+	
+	
 
 }

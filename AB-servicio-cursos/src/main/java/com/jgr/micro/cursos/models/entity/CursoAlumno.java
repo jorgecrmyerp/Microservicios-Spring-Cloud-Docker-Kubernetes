@@ -1,5 +1,7 @@
 package com.jgr.micro.cursos.models.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * The Class CursoAlumno.
@@ -18,7 +21,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "cursos_alumnos")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+
 
 public class CursoAlumno {
 
@@ -32,15 +37,20 @@ public class CursoAlumno {
 	private Long alumnoId;
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof CursoAlumno)) {
-			return false;
-		}
-		CursoAlumno o = (CursoAlumno) obj;
-		return this.alumnoId != null && this.alumnoId.equals(o.alumnoId);
+	public int hashCode() {
+		return Objects.hash(alumnoId);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof CursoAlumno))
+			return false;
+		CursoAlumno other = (CursoAlumno) obj;
+		return Objects.equals(this.alumnoId, other.alumnoId);
+	}
+
+	
 
 }

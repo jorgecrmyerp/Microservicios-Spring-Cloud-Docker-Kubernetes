@@ -1,7 +1,7 @@
 package com.jgr.micro.cursos.models.entity;
 
 import java.util.Date;
-
+import java.util.Objects;
 
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
@@ -21,43 +21,9 @@ import lombok.NoArgsConstructor;
  * es el del microservicio alumnos
  */
 
-/**
- * Instantiates a new alumno.
- */
+
 @NoArgsConstructor
-
-/**
- * Instantiates a new alumno.
- *
- * @param id the id
- * @param nombre the nombre
- * @param email the email
- * @param password the password
- * @param createAt the create at
- */
-
-/**
- * Instantiates a new alumno.
- *
- * @param id the id
- * @param nombre the nombre
- * @param email the email
- * @param password the password
- * @param createAt the create at
- */
 @AllArgsConstructor
-
-/**
- * To string.
- *
- * @return the java.lang. string
- */
-
-/**
- * To string.
- *
- * @return the java.lang. string
- */
 @Data
 public class Alumno {
 
@@ -89,5 +55,25 @@ public class Alumno {
 	public void prePersist() {
 		this.createAt = new Date();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alumno other = (Alumno) obj;
+		return Objects.equals(this.id, other.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	
+	
+	
 
 }
