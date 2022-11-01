@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jgr.micro.cursos.models.entity.Alumno;
 
@@ -44,6 +45,6 @@ public interface AlumnoFeign {
 	 * @return the iterable
 	 */
 	@GetMapping("/alumnos-por-curso")
-	public Iterable<Alumno> alumnosCursoRequestParam(Iterable<Long> ids);
+	public Iterable<Alumno> alumnosCursoRequestParam(@RequestParam Iterable<Long> ids);
 
 }

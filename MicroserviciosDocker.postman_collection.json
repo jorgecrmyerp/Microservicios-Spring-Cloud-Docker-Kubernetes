@@ -199,7 +199,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n     \r\n        \"nombre\": \"Curso1\",\r\n        \"createAt\": \"2022-10-29T16:57:45.352+00:00\"\r\n    }",
+							"raw": "{\r\n    \"nombre\": \"Curso1\",\r\n    \"createAt\": \"2022-10-29T16:57:45.352+00:00\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

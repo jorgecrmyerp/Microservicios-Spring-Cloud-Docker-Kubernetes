@@ -181,14 +181,17 @@ public class CursoServiceImpl implements ICursoService {
 	 * @return the optional curso con los alumnos relacionados
 	 */
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<Curso> alumnosCursoporIdCurso(Long cursoId) {
 
 		Optional<Curso> cursoOp = iCursoRepository.findById(cursoId);
+		System.out.println("*************en cursoserviceimpl alumnosCursoporIdCurso");
 
 		if (cursoOp.isPresent()) {
 			Curso curso = cursoOp.get();
-
-			if (!curso.getAlumnos().isEmpty()) {
+			
+			if (!curso.getCursoAlumnos().isEmpty()) {
+			
 				//del curso obtenemos el id del alumno relacionado en alumno_cursos
 				List<Long> ids = curso.getCursoAlumnos().stream(). //lo convierto a stream
 						map(cursoAlumno->cursoAlumno.getAlumnoId()). //lo paso al formato cursoAlumno						
@@ -199,6 +202,9 @@ public class CursoServiceImpl implements ICursoService {
 						map(CursoAlumno::getAlumnoId).collect(Collectors.toList());
 				 */
 				//obtenemos el detalle de los alumnos por lista de idalumnos
+				System.out.println("****id alumnos por curso"+ ids.size());
+				ids.forEach(System.out::println);
+				
 				List<Alumno> alumnos = (List<Alumno>) alumnoFeign.alumnosCursoRequestParam(ids);
 
 				curso.setAlumnos(alumnos);

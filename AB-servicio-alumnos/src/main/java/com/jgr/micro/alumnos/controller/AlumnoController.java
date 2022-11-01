@@ -1,4 +1,5 @@
 package com.jgr.micro.alumnos.controller;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jgr.micro.alumnos.models.Alumno;
 import com.jgr.micro.alumnos.models.service.IAlumnoService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AlumnoController.
  */
@@ -226,7 +226,13 @@ public class AlumnoController {
 	 * @return the response entity
 	 */
 	@GetMapping("/alumnos-por-curso")
-	public ResponseEntity<?> alumnosCursoRequestParam(@Valid @RequestParam List<Long> ids) {
+	public ResponseEntity<?> alumnosCursoRequestParam(@RequestParam List<Long> ids) {
+		
+		logger.debug("alumnoz-AlumnosCursoREquest->"+ids.get(0));
+		List <Alumno> lista = new ArrayList<>();
+		
+		lista.forEach(System.out::println);
+		
 		
 		return ResponseEntity.ok(iAlumnoService.findAllById(ids));
 		
