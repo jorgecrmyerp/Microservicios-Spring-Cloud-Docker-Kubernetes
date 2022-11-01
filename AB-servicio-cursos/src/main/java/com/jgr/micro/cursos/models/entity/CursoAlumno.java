@@ -11,20 +11,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CursoAlumno.
  */
 @Entity
 @Table(name = "cursos_alumnos")
-
-
 @NoArgsConstructor
-
-
 @AllArgsConstructor
-
-
 @Data
 
 public class CursoAlumno {
@@ -38,40 +31,16 @@ public class CursoAlumno {
 	@Column(name = "alumno_id", unique = true)
 	private Long alumnoId;
 
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * Sets the id.
-	 *
-	 * @param id the new id
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * Gets the usuario id.
-	 *
-	 * @return the usuario id
-	 */
-	public Long getUsuarioId() {
-		return alumnoId;
-	}
-
-	/**
-	 * Sets the usuario id.
-	 *
-	 * @param alumnoId the new usuario id
-	 */
-	public void setUsuarioId(Long alumnoId) {
-		this.alumnoId = alumnoId;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof CursoAlumno)) {
+			return false;
+		}
+		CursoAlumno o = (CursoAlumno) obj;
+		return this.alumnoId != null && this.alumnoId.equals(o.alumnoId);
 	}
 
 }

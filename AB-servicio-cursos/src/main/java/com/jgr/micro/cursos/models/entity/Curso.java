@@ -23,7 +23,7 @@ import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Curso.
  */
@@ -81,29 +81,33 @@ public class Curso {
 	}
 
 	/**
-	 * Adds the curso usuario.
+	 * Adds the curso alumno.
 	 *
-	 * @param cursoUsuario the curso usuario
+	 * @param cursoAlumno the curso alumno
 	 */
-	public void addCursoUsuario(CursoAlumno cursoUsuario) {
-		cursoAlumnos.add(cursoUsuario);
+	public void addCursoAlumno(CursoAlumno cursoAlumno) {
+		cursoAlumnos.add(cursoAlumno);
 	}
 
 	/**
-	 * Removes the curso usuario.
+	 * Removes the curso alumno.
 	 *
-	 * @param cursoUsuario the curso usuario
+	 * @param cursoAlumno the curso alumno
 	 */
-	public void removeCursoUsuario(CursoAlumno cursoUsuario) {
-		cursoAlumnos.remove(cursoUsuario);
+	public void removeCursoAlumno(CursoAlumno cursoAlumno) {
+		System.out.println("****EN CLASE CURSO antes****"+cursoAlumno.toString());
+		cursoAlumnos.forEach(System.out::println);
+		cursoAlumnos.remove(cursoAlumno);
+		System.out.println("****EN CLASE CURSO despues****");
+		cursoAlumnos.forEach(System.out::println);
 	}
 
 	/**
-	 * Gets the curso usuarios.
+	 * Gets the curso alumnos.
 	 *
-	 * @return the curso usuarios
+	 * @return the curso alumnos
 	 */
-	public List<CursoAlumno> getCursoUsuarios() {
+	public List<CursoAlumno> getCursoAlumnos() {
 		return cursoAlumnos;
 	}
 
@@ -112,7 +116,7 @@ public class Curso {
 	 *
 	 * @param cursoAlumnos the new curso alumnoss
 	 */
-	public void setCursoAlumnoss(List<CursoAlumno> cursoAlumnos) {
+	public void setCursoAlumnos(List<CursoAlumno> cursoAlumnos) {
 		this.cursoAlumnos = cursoAlumnos;
 	}
 

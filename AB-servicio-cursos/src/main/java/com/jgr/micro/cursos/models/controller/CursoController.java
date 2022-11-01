@@ -172,7 +172,7 @@ public class CursoController {
 
 
 	/**
-	 * Asignar alumno que no existe al curso.
+	 * Asignar alumno que SI existe al curso.
 	 * en caso de que no exista el curso da error
 	 *
 	 * @param alumno the alumno
@@ -220,7 +220,7 @@ public class CursoController {
 	 * @return the response entity
 	 */
 	@DeleteMapping("/borrar-alumno/{cursoId}")
-	public ResponseEntity<?> eliminarRelacionAlumnoCurso(@Valid @RequestBody Alumno alumno, 
+	public ResponseEntity<?> eliminarRelacionAlumnoCurso(@RequestBody Alumno alumno, 
 			BindingResult result,
 			@PathVariable Long cursoId) {
 
@@ -228,7 +228,7 @@ public class CursoController {
 			return validar(result);
 		}
 
-		Optional<Alumno> alumnoBaja = null;
+		Optional<Alumno> alumnoBaja;
 
 		// si hay error en la comunicacion con feign
 		try {
@@ -260,6 +260,8 @@ public class CursoController {
 	@PostMapping("/alta-alumno/{cursoId}")
 	public ResponseEntity<?> altaAlumnoCurso(@Valid @RequestBody Alumno alumno, 
 			BindingResult result, @PathVariable Long cursoId) {
+		
+		System.out.println("en alta alumo curso"+alumno.toString());
 
 		if (result.hasErrors()) {
 			return validar(result);

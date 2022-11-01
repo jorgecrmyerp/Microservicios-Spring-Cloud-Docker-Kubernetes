@@ -156,6 +156,9 @@ public class AlumnoController {
 	@PostMapping
 	public ResponseEntity<?> altaAlumno(@Valid @RequestBody Alumno al, BindingResult result) {
 		
+		System.out.println("en alta alumnos"+al.toString());
+		
+		
 		if (result.hasErrors()) {
             return validar(result);
         }

@@ -15,7 +15,6 @@ import com.jgr.micro.cursos.models.entity.Curso;
 import com.jgr.micro.cursos.models.entity.CursoAlumno;
 import com.jgr.micro.cursos.models.repository.ICursoRepository;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CursoServiceImpl.
  */
@@ -90,7 +89,7 @@ public class CursoServiceImpl implements ICursoService {
 	}
 
 	/**
-	 * Asignar alumno. asignamos el alumno que ya existe al curso con id que pasamos por parametro
+	 * Asignar alumno. asignamos el alumno que SI existe al curso con id que pasamos por parametro
 	 * obtenemos el alumno con feign, lo relacionamos con el curso y lo guardamos en
 	 * bbdd
 	 * 
@@ -105,13 +104,15 @@ public class CursoServiceImpl implements ICursoService {
 		// buscamos el curso
 		Optional<Curso> cursoOp = iCursoRepository.findById(cursoid);
 
+		System.out.println("asignar alumno curso,curso->"+cursoOp.get().getNombre());
+		
 		if (cursoOp.isPresent()) {
 			//alumno de bbdd obtenido con feign
 			Alumno alClient = alumnoFeign.detalleAlumno(alumno.getId());
 			Curso curso = cursoOp.get();
 			CursoAlumno cursoAlumno = new CursoAlumno();
 			cursoAlumno.setAlumnoId(alClient.getId());
-			curso.addCursoUsuario(cursoAlumno);
+			curso.addCursoAlumno(cursoAlumno);
 			iCursoRepository.save(curso);
 			return Optional.of(alClient);
 		}
@@ -139,7 +140,7 @@ public class CursoServiceImpl implements ICursoService {
 			Curso curso = cursoOp.get();
 			CursoAlumno cursoAlumno = new CursoAlumno();
 			cursoAlumno.setAlumnoId(alClient.getId());
-			curso.addCursoUsuario(cursoAlumno);
+			curso.addCursoAlumno(cursoAlumno);
 			iCursoRepository.save(curso);
 			return Optional.of(alClient);
 		}
@@ -161,14 +162,14 @@ public class CursoServiceImpl implements ICursoService {
 		Optional<Curso> cursoOp = iCursoRepository.findById(cursoid);
 
 		if (cursoOp.isPresent()) {
-			//alumno de bbdd obtenido con feign
-			Alumno alClient = alumnoFeign.detalleAlumno(alumno.getId());
-			Curso curso = cursoOp.get();
-			CursoAlumno cursoAlumno = new CursoAlumno();
-			cursoAlumno.setAlumnoId(alClient.getId());
-			curso.removeCursoUsuario(cursoAlumno);//lo quita de la lista de alumnos relacionados
-			iCursoRepository.save(curso);
-			return Optional.of(alClient);
+			  Alumno al = alumnoFeign.detalleAlumno(alumno.getId());
+			  Curso curso = cursoOp.get();
+	          CursoAlumno cursoAlumno = new CursoAlumno();
+	          cursoAlumno.setAlumnoId(al.getId());
+	          cursoAlumno.setId(cursoid);
+	          curso.removeCursoAlumno(cursoAlumno);
+	          iCursoRepository.save(curso);
+	          return Optional.of(al);
 		}
 
 		return Optional.empty();
