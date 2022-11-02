@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-01 ++equals override YA FUNCIONA EL DELETE RELACION ALUMNO-CURSO"
+message="$(date)2022-11-02 PRIMERA SUBIDA DEL DIA"
 fi
 
 start=`date +%s`
