@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-02 5-FEIGN OK"
+message="$(date)2022-11-02 EMPIEZO KUBERNETES CON MODULOS PROFE"
 fi
 
 start=`date +%s`
