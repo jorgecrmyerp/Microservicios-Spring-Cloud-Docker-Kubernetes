@@ -6,10 +6,18 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.jgr.micro.cursos.models.entity.Curso;
 
+/**
+ * The Interface ICursoRepository.
+ */
 public interface ICursoRepository extends  PagingAndSortingRepository<Curso, Long>{
 	
+    /**
+     * Eliminar curso_usuario por id de alumno.
+     *
+     * @param id the id
+     */
     @Modifying
     @Query("delete from CursoAlumno cu where cu.alumnoId=?1")
-    void eliminarCursoUsuarioPorId(Long id);
-
+    public void eliminarCursoUsuarioPorId(Long id);
+    
 }

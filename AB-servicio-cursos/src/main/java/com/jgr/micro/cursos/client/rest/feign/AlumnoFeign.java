@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jgr.micro.cursos.models.entity.Alumno;
 
-// TODO: Auto-generated Javadoc
 /**
  * Relacion con el microservicio Alumnos.
  */
@@ -17,7 +16,7 @@ import com.jgr.micro.cursos.models.entity.Alumno;
 public interface AlumnoFeign {
 	
 	/**
-	 * Detalle alumno.
+	 * Detalle alumno a partir de un id.
 	 *
 	 * @param id the id
 	 * @return the alumno

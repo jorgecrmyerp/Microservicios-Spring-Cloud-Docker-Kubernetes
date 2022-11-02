@@ -15,6 +15,7 @@ import com.jgr.micro.cursos.models.entity.Curso;
 import com.jgr.micro.cursos.models.entity.CursoAlumno;
 import com.jgr.micro.cursos.models.repository.ICursoRepository;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CursoServiceImpl.
  */
@@ -186,8 +187,7 @@ public class CursoServiceImpl implements ICursoService {
 	public Optional<Curso> alumnosCursoporIdCurso(Long cursoId) {
 
 		Optional<Curso> cursoOp = iCursoRepository.findById(cursoId);
-		System.out.println("*************en cursoserviceimpl alumnosCursoporIdCurso");
-
+		
 		if (cursoOp.isPresent()) {
 			Curso curso = cursoOp.get();
 			
@@ -203,8 +203,6 @@ public class CursoServiceImpl implements ICursoService {
 						map(CursoAlumno::getAlumnoId).collect(Collectors.toList());
 				 */
 				//obtenemos el detalle de los alumnos por lista de idalumnos
-				System.out.println("****id alumnos por curso"+ ids.size());
-				ids.forEach(System.out::println);
 				
 				List<Alumno> alumnos = (List<Alumno>) alumnoFeign.alumnosCursoRequestParam(ids);
 
@@ -217,6 +215,18 @@ public class CursoServiceImpl implements ICursoService {
 		}
 		return Optional.empty();
 
+	}
+
+	/**
+	 * Eliminar curso usuario por id.
+	 *
+	 * @param id the id
+	 */
+	@Override
+	@Transactional
+	public void eliminarCursoUsuarioPorId(Long id) {
+		iCursoRepository.eliminarCursoUsuarioPorId(id);
+		
 	}
 
 }

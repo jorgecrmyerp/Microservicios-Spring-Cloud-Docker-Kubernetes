@@ -4,20 +4,18 @@ import java.util.Optional;
 
 import com.jgr.micro.alumnos.models.Alumno;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IAlumnoService.
  */
 public interface IAlumnoService {
-	
-	
+
 	/**
 	 * Find all.
 	 *
 	 * @return the iterable
 	 */
-	public Iterable <Alumno> findAll();
-	
+	public Iterable<Alumno> findAll();
+
 	/**
 	 * Find by id.
 	 *
@@ -25,7 +23,7 @@ public interface IAlumnoService {
 	 * @return the optional
 	 */
 	public Optional<Alumno> findById(Long id);
-	
+
 	/**
 	 * Save.
 	 *
@@ -33,23 +31,21 @@ public interface IAlumnoService {
 	 * @return the alumno
 	 */
 	public Alumno save(Alumno al);
-	
+
 	/**
 	 * Delete.
 	 *
 	 * @param id the id
 	 */
 	public void delete(Long id);
-	
-	
+
 	/**
 	 * Delete.
 	 *
 	 * @param al the al
 	 */
 	public void delete(Alumno al);
-	
-	
+
 	/**
 	 * Find by email.
 	 *
@@ -57,16 +53,15 @@ public interface IAlumnoService {
 	 * @return the optional
 	 */
 	public Optional<Alumno> findByEmail(String email);
-	
+
 	/**
 	 * Por email.
 	 *
 	 * @param email the email
 	 * @return the optional
 	 */
-	public Optional <Alumno> porEmail(String email);
-	
-	
+	public Optional<Alumno> porEmail(String email);
+
 	/**
 	 * Exist by email.
 	 *
@@ -74,10 +69,11 @@ public interface IAlumnoService {
 	 * @return true, if successful
 	 */
 	public boolean existsByEmail(String email);
-	
+
 	/**
-	 * Find all alumos by id list.
-	 *
+	 * Find all alumos by id list. Le pasamos una lista de id de alumnos y los
+	 * devuelve en un iterable
+	 * 
 	 * @param ids the ids
 	 * @return the iterable
 	 */

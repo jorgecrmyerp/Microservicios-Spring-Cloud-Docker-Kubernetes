@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.jgr.micro.cursos.models.entity.Alumno;
 import com.jgr.micro.cursos.models.entity.Curso;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface ICursoService.
  */
@@ -78,10 +79,18 @@ public interface ICursoService {
 	public Optional<Alumno> eliminarRelacionAlumnoCurso(Alumno alumno,Long cursoid);
 	
 	/**
-	 * Le pasamos el id de un curso y nos devuelve los alumnos relacionados.
+	 * Le pasamos el id de un curso y nos devuelve el curso con los alumnos relacionados.
 	 *
 	 * @param cursoId the curso id
 	 * @return the optional
 	 */
 	public Optional <Curso> alumnosCursoporIdCurso(Long cursoId);
+	
+	
+	 /**
+ 	 * Eliminar curso usuario por id.
+ 	 *
+ 	 * @param id the id
+ 	 */
+ 	public void eliminarCursoUsuarioPorId(Long id);
 }

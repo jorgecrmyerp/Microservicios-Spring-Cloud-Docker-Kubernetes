@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jgr.micro.alumnos.client.rest.feign.CursoClienteFeign;
 import com.jgr.micro.alumnos.models.Alumno;
 import com.jgr.micro.alumnos.models.repository.IAlumnoRepository;
 
@@ -18,7 +19,12 @@ public class AlumnoServiceImpl implements IAlumnoService {
 
 	/** The alumno repository. */
 	@Autowired
-	IAlumnoRepository alumnoRepository;
+	private IAlumnoRepository alumnoRepository;
+	
+	
+	/** The curso cliente feign. */
+	@Autowired
+	private CursoClienteFeign cursoClienteFeign; 
 
 	/**
 	 * Find all.
@@ -58,7 +64,8 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	}
 
 	/**
-	 * Delete.
+	 * Delete por id.
+	 * borra alumno y da de baja la relacion curso_alumno en el microservicio cursos
 	 *
 	 * @param id the id
 	 */
@@ -66,18 +73,21 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	@Transactional
 	public void delete(Long id) {
 		alumnoRepository.deleteById(id);
+		cursoClienteFeign.eliminarCursoAlumnoId(id);
+		
 
 	}
 
 	/**
-	 * Delete.
-	 *
+	 * Delete por alumno.
+	 * borra alumno y da de baja la relacion curso_alumno en el microservicio cursos
 	 * @param al the al
 	 */
 	@Override
 	@Transactional
 	public void delete(Alumno al) {
 		alumnoRepository.delete(al);
+		cursoClienteFeign.eliminarCursoAlumnoId(al.getId());
 
 	}
 
@@ -126,7 +136,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 	 * @return the iterable
 	 */
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public Iterable<Alumno> findAllById(Iterable<Long> ids) {
 		return alumnoRepository.findAllById(ids);
 	}
