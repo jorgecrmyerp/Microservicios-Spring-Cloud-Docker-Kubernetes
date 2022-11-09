@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
  * The Interface CursoClienteFeign.
  * Relacion con cursos
  */
-@FeignClient(name="servicio-cursos",url="localhost:8002")
+//@FeignClient(name="servicio-cursos",url="localhost:8002")
+@FeignClient(name="servicio-cursos")
 public interface CursoClienteFeign {
 	
 	/**

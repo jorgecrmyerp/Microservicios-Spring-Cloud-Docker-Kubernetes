@@ -12,7 +12,8 @@ import com.jgr.micro.cursos.models.entity.Alumno;
 /**
  * Relacion con el microservicio Alumnos.
  */
-@FeignClient(name="servicio-alumnos",url="localhost:8001")//hardcode relacion microservicio con su puerto
+//@FeignClient(name="servicio-alumnos",url="localhost:8001")//hardcode relacion microservicio con su puerto
+@FeignClient(name="servicio-alumnos")//hardcode relacion microservicio con su puerto
 public interface AlumnoFeign {
 	
 	/**

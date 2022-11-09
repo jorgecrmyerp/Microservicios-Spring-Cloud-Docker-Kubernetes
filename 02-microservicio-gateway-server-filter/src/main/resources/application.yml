@@ -36,8 +36,13 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
-  config:
-    import: 'optional:configserver:'          
+##  config:
+##    import: 'optional:configserver:'
+##    import: configserver:http://localhost:8888
+##      import: 'optional:configserver:http://localhost:8888'
+  profiles:
+    active:
+    - dev               
   cloud:
     gateway:
       routes:
@@ -51,7 +56,7 @@ spring:
               args:
                 name: productos
                 statusCodes: 500 ,503
-                fallbackUri: forward:/api/items/listar                   
+                fallbackUri: forward:/api/cursos/por-nombre/                   
             - StripPrefix=2           
             - Ejemplo=Hola mensaje desde application.yml,usuario,Yomismo            
       - id: servicio-item

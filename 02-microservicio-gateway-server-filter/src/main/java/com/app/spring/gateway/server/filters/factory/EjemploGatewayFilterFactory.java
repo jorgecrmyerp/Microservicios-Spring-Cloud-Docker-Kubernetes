@@ -29,7 +29,7 @@ import reactor.core.publisher.Mono;
 /**
  * A factory for creating EjemploGatewayFilter objects.
  */
-@Component
+//@Component
 public class EjemploGatewayFilterFactory
 	extends AbstractGatewayFilterFactory<EjemploGatewayFilterFactory.Configuracion> {
 
