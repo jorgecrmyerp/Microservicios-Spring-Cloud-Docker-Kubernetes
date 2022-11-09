@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
  * The Class GlobalGatewayFilters.
  * Definimos los filtros para los microservicios que se van a conectar a traves de el
  */
-//@Component
+@Component
 public class GlobalGatewayFilters implements GlobalFilter,Ordered{
 
     /** The logger. */

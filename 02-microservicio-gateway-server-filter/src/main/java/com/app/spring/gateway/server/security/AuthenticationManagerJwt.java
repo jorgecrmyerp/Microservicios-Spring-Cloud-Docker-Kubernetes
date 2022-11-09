@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +26,7 @@ import reactor.core.publisher.Mono;
  * valida la firma,el token que no haya expirado,su estructura...
  * luego se utiliza en el filtro
  */
-//@Component
+@Component
 public class AuthenticationManagerJwt implements ReactiveAuthenticationManager {
 
     /** The llave jwt. guardada en el application.config del config-server

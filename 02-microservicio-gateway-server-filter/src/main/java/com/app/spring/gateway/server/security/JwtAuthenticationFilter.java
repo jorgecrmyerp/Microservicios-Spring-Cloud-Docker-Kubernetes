@@ -18,8 +18,7 @@ import reactor.netty.http.client.HttpClient;
 /**
  * The Class JwtAuthenticationFilter.
  */
-
-//////@ComponenT
+@Component
 public class JwtAuthenticationFilter implements WebFilter{
 
     /** The authentication manager. */
