@@ -10,6 +10,13 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  * a ellos se pone la ip que definimos en el properties
  * Se conecta a Eureka como si fuera otro microservicio.
  * implementamos la seguridad con https://github.com/jwtk/jjwt,OAuth2 y JWT solo funcionan en zuul,estan deprecated
+ * 
+ *QUITO SEGURIDAD PARA LAS PRUEBAS
+ *QUITO SEGURIDAD PARA LAS PRUEBAS
+ *QUITO SEGURIDAD PARA LAS PRUEBAS
+ *QUITO SEGURIDAD PARA LAS PRUEBAS
+ *QUITO SEGURIDAD PARA LAS PRUEBAS
+ *QUITO SEGURIDAD PARA LAS PRUEBAS
  */
 @EnableEurekaClient
 @SpringBootApplication

@@ -20,7 +20,9 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
  * Ambos tienen la misma semántica de seguridad, pero EnableWebSecurityse usan en una pila MVC 
  * mientras que EnableWebFluxSecurityse usan en la pila reactiva (habilitando Spring Security WebFlux)
  */
-@EnableWebFluxSecurity
+////////@EnableWebFluxSecurity
+
+
 public class SpringSecurityConfig {
     
     /** The logger. */

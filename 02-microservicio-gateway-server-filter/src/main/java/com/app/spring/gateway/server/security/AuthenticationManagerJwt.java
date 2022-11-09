@@ -25,7 +25,7 @@ import reactor.core.publisher.Mono;
  * valida la firma,el token que no haya expirado,su estructura...
  * luego se utiliza en el filtro
  */
-@Component
+//@Component
 public class AuthenticationManagerJwt implements ReactiveAuthenticationManager {
 
     /** The llave jwt. guardada en el application.config del config-server
