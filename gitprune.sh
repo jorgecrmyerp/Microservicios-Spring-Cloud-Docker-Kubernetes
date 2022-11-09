@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-09 ++configserver,eureka y gateway"
+message="$(date)2022-11-09 creada documentacion swagger"
 fi
 
 start=`date +%s`
