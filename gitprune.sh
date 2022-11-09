@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-09 empezando de nuevo"
+message="$(date)2022-11-09 ++configserver,eureka y gateway"
 fi
 
 start=`date +%s`
