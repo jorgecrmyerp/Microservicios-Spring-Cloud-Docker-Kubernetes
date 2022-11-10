@@ -5,12 +5,9 @@
  */
 package com.app.spring.config.server;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
-
-import brave.Tracer;
 
 /**
  * The Class ConfigServerApplication para guardar la configuracion de los microservicios.
