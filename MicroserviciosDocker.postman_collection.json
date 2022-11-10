@@ -15,11 +15,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8001",
+							"raw": "localhost:8090/api/alumnos/",
 							"host": [
 								"localhost"
 							],
-							"port": "8001"
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								""
+							]
 						}
 					},
 					"response": []
@@ -30,12 +35,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8001/1",
+							"raw": "localhost:8090/api/alumnos/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8001",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos",
 								"1"
 							]
 						}
@@ -57,11 +64,16 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8001",
+							"raw": "localhost:8090/api/alumnos/",
 							"host": [
 								"localhost"
 							],
-							"port": "8001"
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								""
+							]
 						}
 					},
 					"response": []
@@ -72,19 +84,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8001/request-param/?id=1",
+							"raw": "localhost:8090/api/alumnos/request-param/?id=4",
 							"host": [
 								"localhost"
 							],
-							"port": "8001",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos",
 								"request-param",
 								""
 							],
 							"query": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "4"
 								}
 							]
 						}
@@ -106,12 +120,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8001/1",
+							"raw": "localhost:8090/api/alumnos/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8001",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos",
 								"1"
 							]
 						}
@@ -133,12 +149,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8001/1",
+							"raw": "localhost:8090/api/alumnos/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8001",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos",
 								"1"
 							]
 						}
@@ -160,12 +178,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8001/borra-alumno",
+							"raw": "localhost:8090/api/alumnos/borra-alumno",
 							"host": [
 								"localhost"
 							],
-							"port": "8001",
+							"port": "8090",
 							"path": [
+								"api",
+								"alumnos",
 								"borra-alumno"
 							]
 						}
@@ -190,6 +210,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "AlumnosPorCurso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/alumnos-por-curso?ids=1,2,3",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"alumnos-por-curso"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "1,2,3"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -202,11 +248,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8002",
+							"raw": "localhost:8090/api/cursos/",
 							"host": [
 								"localhost"
 							],
-							"port": "8002"
+							"port": "8090",
+							"path": [
+								"api",
+								"cursos",
+								""
+							]
 						}
 					},
 					"response": []
@@ -226,11 +277,16 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8002",
+							"raw": "localhost:8090/api/cursos/",
 							"host": [
 								"localhost"
 							],
-							"port": "8002"
+							"port": "8090",
+							"path": [
+								"api",
+								"cursos",
+								""
+							]
 						}
 					},
 					"response": []
@@ -250,12 +306,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8002/6",
+							"raw": "localhost:8090/api/cursos/6",
 							"host": [
 								"localhost"
 							],
-							"port": "8002",
+							"port": "8090",
 							"path": [
+								"api",
+								"cursos",
 								"6"
 							]
 						}
@@ -277,12 +335,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8002/6",
+							"raw": "localhost:8090/api/cursos/6",
 							"host": [
 								"localhost"
 							],
-							"port": "8002",
+							"port": "8090",
 							"path": [
+								"api",
+								"cursos",
 								"6"
 							]
 						}
@@ -295,12 +355,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8002/1",
+							"raw": "localhost:8090/api/cursos/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8002",
+							"port": "8090",
 							"path": [
+								"api",
+								"cursos",
 								"1"
 							]
 						}
@@ -313,12 +375,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8002/por-nombre/",
+							"raw": "localhost:8090/api/cursos/por-nombre/",
 							"host": [
 								"localhost"
 							],
-							"port": "8002",
+							"port": "8090",
 							"path": [
+								"api",
+								"cursos",
 								"por-nombre",
 								""
 							]
@@ -341,12 +405,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8002/asignar-alumno/1",
+							"raw": "localhost:8090/api/cursos/asignar-alumno/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8002",
+							"port": "8090",
 							"path": [
+								"api",
+								"cursos",
 								"asignar-alumno",
 								"1"
 							]
@@ -369,12 +435,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8002/alta-alumno/1",
+							"raw": "localhost:8090/api/cursos/alta-alumno/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8002",
+							"port": "8090",
 							"path": [
+								"api",
+								"cursos",
 								"alta-alumno",
 								"1"
 							]
@@ -397,12 +465,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8002/borrar-alumno/1",
+							"raw": "localhost:8090/api/cursos/borrar-alumno/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8002",
+							"port": "8090",
 							"path": [
+								"api",
+								"cursos",
 								"borrar-alumno",
 								"1"
 							]
@@ -425,39 +495,16 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8002/alta-alumno/1",
+							"raw": "localhost:8090/api/cursos/alta-alumno/1",
 							"host": [
 								"localhost"
 							],
-							"port": "8002",
+							"port": "8090",
 							"path": [
+								"api",
+								"cursos",
 								"alta-alumno",
 								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ListarAlumnosPorCurso",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8001/alumnos-por-curso?ids=1,2,5",
-							"host": [
-								"localhost"
-							],
-							"port": "8001",
-							"path": [
-								"alumnos-por-curso"
-							],
-							"query": [
-								{
-									"key": "ids",
-									"value": "1,2,5",
-									"description": "cursos de los que busca alumnos"
-								}
 							]
 						}
 					},
@@ -622,14 +669,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/spring-gateway-server/dev",
+							"raw": "http://localhost:8888/gateway-server/dev",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "8888",
 							"path": [
-								"spring-gateway-server",
+								"gateway-server",
 								"dev"
 							]
 						}

@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-10 NO CONECTA GATEWAY-MICROSERVICIOS"
+message="$(date)2022-11-10 FUNCIONA TODO"
 fi
 
 start=`date +%s`

@@ -59,7 +59,7 @@ spring:
                 fallbackUri: forward:/api/cursos/por-nombre/                   
             - StripPrefix=2           
             - Ejemplo=Hola mensaje desde application.yml,usuario,Yomismo            
-      - id: servicio-item
+      - id: servicio-cursos
         uri: lb://servicio-cursos
         predicates:
           - Path=/api/cursos/**
@@ -68,22 +68,4 @@ spring:
             - AddRequestHeader=token-request, abcdefg
             - AddResponseHeader=token-response, 789abc
             - AddRequestParameter=nombre, elMio
-#           - SetResponseHeader=Content-Type, text/plain  devuelve los datos como como texto plano        
-      - id: servicio-validacion
-        uri: lb://servicio-validacion
-        predicates:
-          - Path=/api/validacion/**
-        filters:
-            - StripPrefix=2 ##lo he definido en iusuariodao con el path usuarios
-      - id: servicio-autenticacion
-        uri: lb://servicio-autenticacion
-        predicates:
-          - Path=/api/autenticacion/**
-        filters:
-            - StripPrefix=2
-            #Remove All the sensitive request headers (Cookie, Set-Cookie & Authorization)
-            #while passing request to downstream services
-            #https://stackoverflow.com/questions/65684193/spring-cloud-gateway-remove-request-headers-from-all-the-routes-but-one
-            ##- RemoveRequestHeader=Cookie
-            ##- RemoveRequestHeader=Set-Cookie
-            ##- RemoveRequestHeader=Authorization
+#           - SetResponseHeader=Content-Type, text/plain  devuelve los datos como como texto plano

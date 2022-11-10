@@ -66,11 +66,12 @@ public class CursoController {
 		}
 	}
 
+	
+	@GetMapping("/por-nombre/")
 	@Operation(summary = "Lista ordenada por nombre de los cursos")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Lista de cursos con alumnos asignados y su detalle", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-			@ApiResponse(responseCode = "404", description = "No hay cursos", content = @Content) })
-	@GetMapping("/por-nombre/")
+			@ApiResponse(responseCode = "404", description = "No hay cursos", content = @Content) })	
 	public ResponseEntity<Iterable<Curso>> listarPorNombre() {
 		List<Curso> cursos = new ArrayList<>();
 
@@ -148,11 +149,9 @@ public class CursoController {
 	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
 	@ApiResponse(responseCode = "404", description = "Curso no existe/errores de validacion", content = @Content) })
 	
-	public ResponseEntity<?> eliminar(@Valid @PathVariable Long id, BindingResult result) {
+	public ResponseEntity<?> eliminar(@PathVariable Long id) {
 
-		if (result.hasErrors()) {
-			return validar(result);
-		}
+		
 		Optional<Curso> o = service.findById(id);
 		if (o.isPresent()) {
 			service.delete(o.get().getId());
@@ -161,23 +160,6 @@ public class CursoController {
 		return ResponseEntity.notFound().build();
 	}
 
-	/**
-	 * Validar.
-	 *
-	 * @param result the result
-	 * @return the response entity
-	 */
-	private ResponseEntity<Map<String, String>> validar(BindingResult result) {
-		Map<String, String> errores = new HashMap<>();
-		result.getFieldErrors().forEach(err -> {
-			errores.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
-			errores.put("DefaultMessage", err.getDefaultMessage());
-			errores.put("Code", err.getCode());
-			errores.put("Name", err.getObjectName());
-
-		});
-		return ResponseEntity.badRequest().body(errores);
-	}
 
 	
 	@PutMapping("/asignar-alumno/{cursoId}")
@@ -281,11 +263,11 @@ public class CursoController {
 
 	}
 
+	@DeleteMapping("eliminar-curso-alumno/{id}")
 	@Operation(summary = "Elimina alumno de un curso")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente", content = {
 	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })
-	@DeleteMapping("eliminar-curso-alumno/{id}")
+	@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })	
 	public ResponseEntity<?> eliminarCursoAlumnoId(@PathVariable Long id) {
 
 		Optional<Curso> o = service.findById(id);
@@ -296,6 +278,26 @@ public class CursoController {
 		}
 		return ResponseEntity.notFound().build();
 
+	}
+	
+	
+
+	/**
+	 * Validar.
+	 *
+	 * @param result the result
+	 * @return the response entity
+	 */
+	private ResponseEntity<Map<String, String>> validar(BindingResult result) {
+		Map<String, String> errores = new HashMap<>();
+		result.getFieldErrors().forEach(err -> {
+			errores.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
+			errores.put("DefaultMessage", err.getDefaultMessage());
+			errores.put("Code", err.getCode());
+			errores.put("Name", err.getObjectName());
+
+		});
+		return ResponseEntity.badRequest().body(errores);
 	}
 
 }

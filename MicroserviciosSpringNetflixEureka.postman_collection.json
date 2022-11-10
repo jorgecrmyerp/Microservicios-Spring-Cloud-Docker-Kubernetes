@@ -1,0 +1,1515 @@
+{
+	"info": {
+		"_postman_id": "b0577739-9721-44b0-aa48-dea99e67c7cf",
+		"name": "MicroserviciosSpringNetflixEureka",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20953727"
+	},
+	"item": [
+		{
+			"name": "Autenticacion",
+			"item": [
+				{
+					"name": "AutenticacionUsuariosAdmin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "frontendadd",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/autenticacion/oauth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"autenticacion",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AutenticacionUsuariosUser",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "frontendadd",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/autenticacion/oauth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"autenticacion",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshTokenAutenticacionUsuarios",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "frontendadd",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhcGVsbGlkbyI6ImFkbWluYXBlbGxpZG8iLCJjb3JyZW8iOiJhZG1pbkBlbWFpbCIsImF0aSI6ImQ3YmU3Y2U4LTU5NTktNDAzZS05MDg5LWY3NjEwODM0ZjA5MiIsImV4cCI6MTY2NDQ0ODM5MCwibm9tYnJlIjoiYWRtaW5ub21icmUiLCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sImp0aSI6ImE1OTFiNTFhLWI3MzgtNGUzNC1hMzEyLWFhOGJhMDVmNmU2ZCIsImNsaWVudF9pZCI6ImZyb250ZW5kYWRkIiwiYWN0aXZvIjoiYWN0aXZvIn0.hnEDTSRQDi3_oHaNG5IAhh0gBWNID6MqyCmmh1YWPqY",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/autenticacion/oauth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"autenticacion",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "ListarProducto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/listar",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarProductoId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/buscar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"buscar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarProductoIdZuul",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/buscar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"buscar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearProducto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nombre Producto\",\r\n    \"precio\" :2500 \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/productos/crear",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarProductoZuul",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/listar",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProductoZuul",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \r\n        \"nombre\": \"PRODUCTO9\",\r\n        \"precio\": 100.0,\r\n        \"createAt\": \"2022-09-21\",\r\n        \"instanceId\": \"servicio-productos:e2110f008659c633616f1053b8df2e12\",\r\n        \"port\": 63022\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/productos/borra/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"borra",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearProductoResponse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nombre ProductoResponse\",\r\n    \"precio\" :2500 \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/productos/crearResponse",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"crearResponse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProductoZuul",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \r\n        \"nombre\": \"PRODUCTO9\",\r\n        \"precio\": 100.0,\r\n        \"createAt\": \"2022-09-21\",\r\n        \"instanceId\": \"servicio-productos:e2110f008659c633616f1053b8df2e12\",\r\n        \"port\": 63022\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/productos/actualiza/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"actualiza",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarProductoZuulConCookieAPPLICATIONYAML",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "123456",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8090/api/productos/listar?color=verde",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"listar"
+							],
+							"query": [
+								{
+									"key": "color",
+									"value": "verde"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarProductoNombre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbnVzZXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiYXBlbGxpZG8iOiJhZG1pbnVzZXJhcGVsbGlkbyIsImNvcnJlbyI6ImFkbWludXNlckBlbWFpbCIsImV4cCI6MTY2NTQ4NDUzNCwibm9tYnJlIjoiYWRtaW51c2Vybm9tYnJlIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiI5ZDczZTBiOS1kMWJkLTQ4NmItOTliMS1iNmQ1OTkzNzAxNmYiLCJpbnRlbnRvcyI6IjAiLCJjbGllbnRfaWQiOiJmcm9udGVuZGFkZCIsImFjdGl2byI6ImFjdGl2byJ9.NMozjw2GKyRhi_WGXevU7fiJQiIbNnERiJIVQP9La4s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/buscarPorNombre/PRODUCTO4",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"buscarPorNombre",
+								"PRODUCTO4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AgrupadosPorPuerto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhcGVsbGlkbyI6ImFkbWluYXBlbGxpZG8iLCJjb3JyZW8iOiJhZG1pbkBlbWFpbCIsImV4cCI6MTY2NTUwMjY0OCwibm9tYnJlIjoiYWRtaW5ub21icmUiLCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sImp0aSI6IjNjM2M5NDNmLWVlYTAtNDEzYi04MDg0LTU5NmY0ZWY0ZGEyZCIsImludGVudG9zIjoiMCIsImNsaWVudF9pZCI6ImZyb250ZW5kYWRkIiwiYWN0aXZvIjoiYWN0aXZvIn0.niznEgsG66ZKUaSUpgyxxU8eOPJpFJl_fYn43sEUEVg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/agrupaPorPuerto",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"agrupaPorPuerto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "ListarItem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8002/listar",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DetalleItemProductoIdyCantidad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8002/buscar/4/cantidad/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"buscar",
+								"4",
+								"cantidad",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarItemZuul",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/listar",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarResponseEntityItemZuul",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/listarResponse",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"listarResponse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemsSINSERVERConfiguracionProperties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8005/obtener-configuracion",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"obtener-configuracion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DetalleItemProductoIdyCantidadZuul",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/buscar/4/cantidad/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"buscar",
+								"4",
+								"cantidad",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearItem",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"PRODUCTO99\",\r\n    \"precio\": 99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/items/crear",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarItem",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"PRODUCTO99MODIFICADO\",\r\n    \"precio\": 999999\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/items/editar/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"editar",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarItem",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/eliminar/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"eliminar",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarItem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8002/api/items/listar",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"items",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "ListaUsuariosZuul",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AltaUsuariosZuul",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"username\": \"userADMINTOTAL\",\r\n                \"password\": \"password\",\r\n                \"enabled\": false,\r\n                \"nombre\": \"francisco\",\r\n                \"apellido\": \"lorin colorado\",\r\n                \"email\": \"usuarioTOTALADMIN@email\",\r\n                \"roles\": [\r\n                    {\r\n                       \"id\":1,\r\n                        \"nombreRol\": \"ROLE_USER\"\r\n                    },\r\n                    {\r\n                        \"id\":2,\r\n                        \"nombreRol\": \"ROLE_ADMIN\"\r\n                    }\r\n                ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModificacionUsuariosZuul",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"username\": \"userADMINMODIFICADO\",\r\n                \"password\": \"password\",\r\n                \"enabled\": 0,\r\n                \"nombre\": \"francisco\",\r\n                \"apellido\": \"lorin colorado\",\r\n                \"email\": \"usuarioADMIN@email\",\r\n                \"roles\": [\r\n                    {\r\n                       \"id\":1,\r\n                        \"nombreRol\": \"ROLE_USER\"\r\n                    },\r\n                    {\r\n                        \"id\":2,\r\n                        \"nombreRol\": \"ROLE_ADMIN\"\r\n                    }\r\n                ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarUsuariosZuul",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"username\": \"userADMINMODIFICADO\",\r\n                \"password\": \"password\",\r\n                \"enabled\": 1,\r\n                \"nombre\": \"francisco\",\r\n                \"apellido\": \"lorin colorado\",\r\n                \"email\": \"usuarioADMIN@email\",\r\n                \"roles\": [\r\n                    {\r\n                       \"id\":1,\r\n                        \"nombreRol\": \"ROLE_USER\"\r\n                    },\r\n                    {\r\n                        \"id\":2,\r\n                        \"nombreRol\": \"ROLE_ADMIN\"\r\n                    }\r\n                ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindByUserName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios/search/findByUsername?username=user",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios",
+								"search",
+								"findByUsername"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "user"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindByUserNameEmail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios/search/buscar-username-email?username=user&email=usuario@email",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios",
+								"search",
+								"buscar-username-email"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "user"
+								},
+								{
+									"key": "email",
+									"value": "usuario@email"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaUsuariosPorRol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios/search/buscaUsuariosPorNombreRol?role=role_adMin",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios",
+								"search",
+								"buscaUsuariosPorNombreRol"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "role_adMin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETEUSUARIOSPROFE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhcGVsbGlkbyI6IkRvZSIsImNvcnJlbyI6Impob24uZG9lQGJvbHNhZGVpZGVhcy5jb20iLCJleHAiOjE2NjQzNzc0MzcsIm5vbWJyZSI6IkpvaG4iLCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImp0aSI6IjJmMWFlMTkzLTEwZjUtNDQwYS04MTY5LTIxNmIwNmU4ZGY5MyIsImNsaWVudF9pZCI6ImZyb250ZW5kYXBwIn0.p8YhzE12EwcD7LDcmaEyyZIyV0zw-k5Wn_yJeBJJbwg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n                \"username\": \"userADMINTOTAL\",\r\n                \"password\": \"password\",\r\n                \"enabled\": false,\r\n                \"nombre\": \"francisco\",\r\n                \"apellido\": \"lorin colorado\",\r\n                \"email\": \"usuarioTOTALADMIN@email\",\r\n                \"roles\": [\r\n                    {\r\n                       \"id\":1,\r\n                        \"nombreRol\": \"ROLE_USER\"\r\n                    },\r\n                    {\r\n                        \"id\":2,\r\n                        \"nombreRol\": \"ROLE_ADMIN\"\r\n                    }\r\n                ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/usuarios/usuarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"usuarios",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaUsuarioIDZuul",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhcGVsbGlkbyI6ImFkbWluYXBlbGxpZG8iLCJjb3JyZW8iOiJhZG1pbkBlbWFpbCIsImV4cCI6MTY2NDYyODU1Niwibm9tYnJlIjoiYWRtaW5ub21icmUiLCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sImp0aSI6IjM0NmU4YjI4LTE3ODEtNDk5Zi1iNjA4LTg1MWE2MzUyZjMxZiIsImludGVudG9zIjoiMCIsImNsaWVudF9pZCI6ImZyb250ZW5kYWRkIiwiYWN0aXZvIjoiYWN0aXZvIn0.7IFYndC1j-ArZ_GLBj2FwTJqRUqNUbEB6OWb4WeeAGM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Errores",
+			"item": [
+				{
+					"name": "ErrorZuulTimeOutItems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/timeOut",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"timeOut"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ErrorZuultimeOutAnotado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/timeOutAnotado",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"timeOutAnotado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ErrorListarItemAnotadoZuul",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/excepcionAnotado",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"excepcionAnotado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarProductoZuulTimeOut",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/timeOut",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"timeOut"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ErrorZuulExcepcionItems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/excepcion",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"excepcion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarProductoZuulExcepcion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/excepcion",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"excepcion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Config-Server",
+			"item": [
+				{
+					"name": "Propiedades ProductosDefecto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/servicio-productos/default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-productos",
+								"default"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades ProductosDev",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/servicio-productos/dev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-productos",
+								"dev"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades Productos Docker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/servicio-productos/docker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-productos",
+								"docker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades ItemsDefecto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/servicio-items/default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-items",
+								"default"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades ItemsDev",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/servicio-items/dev",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-items",
+								"dev"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades ItemsProd",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/servicio-items/prod",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-items",
+								"prod"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades ItemsDocker",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbnVzZXIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiYXBlbGxpZG8iOiJhZG1pbnVzZXJhcGVsbGlkbyIsImNvcnJlbyI6ImFkbWludXNlckBlbWFpbCIsImV4cCI6MTY2NTUwMDM5NCwibm9tYnJlIjoiYWRtaW51c2Vybm9tYnJlIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiIyYTgxOTg5Yy0zMjkxLTRiNmUtYmIzOC1iMWNmMjQ0MjA2NWIiLCJpbnRlbnRvcyI6IjAiLCJjbGllbnRfaWQiOiJmcm9udGVuZGFkZCIsImFjdGl2byI6ImFjdGl2byJ9.IkfaX5dHtz0qsJ43jT3DvwsrldJAUwf6NH0O9k4M2EQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/servicio-items/docker",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-items",
+								"docker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades UsuariosDocker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/servicio-usuarios/docker",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"servicio-usuarios",
+								"docker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemZuulActuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/items/actuator/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"items",
+								"actuator",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductoZuulActuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/productos/actuator",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"productos",
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemActuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8005/actuator/",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"actuator",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ItemActuatorRefresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8005/actuator/refresh",
+							"host": [
+								"localhost"
+							],
+							"port": "8005",
+							"path": [
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UsuariosActuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/validacion/actuator",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UsuariosListaEndpoint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/validacion/usuarios/search",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"validacion",
+								"usuarios",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades Zuul Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/zuul-server/default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"zuul-server",
+								"default"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Propiedades Config Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/config-server/default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"config-server",
+								"default"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eureka Levantado Docker",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/config-server/default",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"config-server",
+								"default"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AutenticacionUsuariosPROFESOR",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "frontendapp",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8090/api/security/oauth/token",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"security",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
