@@ -151,6 +151,13 @@ public class Curso {
 		return Objects.equals(this.id, other.id);
 	}
 
+	@Override
+	public String toString() {
+		return "Curso [" + (this.id != null ? "id=" + this.id + ", " : "")
+				+ (this.nombre != null ? "nombre=" + this.nombre + ", " : "")
+				+ (this.createAt != null ? "createAt=" + this.createAt : "") + "]";
+	}
+
 	
 	
 

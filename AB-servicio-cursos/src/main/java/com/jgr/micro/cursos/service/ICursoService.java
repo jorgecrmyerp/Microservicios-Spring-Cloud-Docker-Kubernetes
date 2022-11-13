@@ -89,4 +89,12 @@ public interface ICursoService {
 	 * @param id the id
 	 */
 	public void eliminarCursoUsuarioPorId(Long id);
+
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the optional
+	 */
+	Curso findByIdThrowError(Long id);
 }
