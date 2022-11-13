@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.alumnos.client.rest.feign.CursoClienteFeign;
-import com.jgr.micro.alumnos.models.Alumno;
 import com.jgr.micro.alumnos.models.repository.IAlumnoRepository;
 
 // TODO: Auto-generated Javadoc

@@ -9,8 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.cursos.client.rest.feign.AlumnoFeign;
-import com.jgr.micro.cursos.models.entity.Alumno;
+
 import com.jgr.micro.cursos.models.entity.Curso;
 import com.jgr.micro.cursos.models.entity.CursoAlumno;
 import com.jgr.micro.cursos.models.repository.ICursoRepository;

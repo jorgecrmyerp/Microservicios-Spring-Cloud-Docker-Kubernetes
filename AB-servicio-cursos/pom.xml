@@ -14,7 +14,7 @@
 		<version>2.7.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	
+
 	<groupId>com.jgr.micro.cursos</groupId>
 	<artifactId>AB-servicio-cursos</artifactId>
 	<version>V1</version>
@@ -25,6 +25,13 @@
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
 	</properties>
 	<dependencies>
+		<!--CLASE ALUMNOS-->
+		<dependency>
+			<groupId>com.jgr.alumnos.modelo</groupId>
+			<artifactId>ZZ-servicio-alumnos-modelo</artifactId>
+			<version>v1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -74,7 +81,7 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.6.11</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>

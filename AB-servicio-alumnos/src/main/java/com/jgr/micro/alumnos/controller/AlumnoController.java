@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jgr.micro.alumnos.models.Alumno;
+import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.alumnos.models.service.IAlumnoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

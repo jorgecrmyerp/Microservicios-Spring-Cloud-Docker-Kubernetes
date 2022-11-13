@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jgr.micro.cursos.models.entity.Alumno;
+import com.jgr.alumnos.modelo.models.Alumno;
+
 
 /**
  * Relacion con el microservicio Alumnos.

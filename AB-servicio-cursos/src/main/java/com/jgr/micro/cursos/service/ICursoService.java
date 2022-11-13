@@ -2,7 +2,7 @@ package com.jgr.micro.cursos.service;
 
 import java.util.Optional;
 
-import com.jgr.micro.cursos.models.entity.Alumno;
+import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.cursos.models.entity.Curso;
 
 /**

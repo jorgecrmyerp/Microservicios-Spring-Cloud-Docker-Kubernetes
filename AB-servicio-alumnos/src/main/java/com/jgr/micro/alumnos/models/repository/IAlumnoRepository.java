@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.jgr.micro.alumnos.models.Alumno;
+import com.jgr.alumnos.modelo.models.Alumno;
 
 
 // TODO: Auto-generated Javadoc

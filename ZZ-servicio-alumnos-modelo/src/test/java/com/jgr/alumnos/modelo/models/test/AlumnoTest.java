@@ -1,9 +1,7 @@
 /**
  * 
  */
-package com.jgr.micro.alumnos.models.test;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.*;
+package com.jgr.alumnos.modelo.models.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,8 +18,8 @@ import org.junit.jupiter.api.TestReporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jgr.micro.alumnos.controller.AlumnoController;
-import com.jgr.micro.alumnos.models.Alumno;
+import com.jgr.alumnos.modelo.models.Alumno;
+
 
 /**
  * @author JORGE
@@ -103,7 +101,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#hashCode()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#hashCode()}.
 	 */
 	@Test
 	@DisplayName("Probando hashcode")
@@ -117,7 +115,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#prePersist()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#prePersist()}.
 	 */
 	@Test
 	void testPrePersist() {
@@ -127,7 +125,7 @@ class AlumnoTest {
 	
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#Alumno()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#Alumno()}.
 	 */
 	@Test
 	void testAlumno() {
@@ -139,7 +137,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#Alumno(Long, String, String, String, Date)}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#Alumno(Long, String, String, String, Date)}.
 	 */
 	@Test
 	void testAlumnoLongStringStringStringDate() {
@@ -147,7 +145,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#getId()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#getId()}.
 	 */
 	@Test
 	void testGetId() {
@@ -157,7 +155,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#getNombre()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#getNombre()}.
 	 */
 	@Test
 	void testGetNombre() {
@@ -170,7 +168,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#getEmail()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#getEmail()}.
 	 */
 	@Test
 	void testGetEmail() {
@@ -184,7 +182,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#getPassword()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#getPassword()}.
 	 */
 	@Test
 	void testGetPassword() {
@@ -197,7 +195,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#getCreateAt()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#getCreateAt()}.
 	 */
 	@Test
 	void testGetCreateAt() {
@@ -214,7 +212,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#setId(Long)}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#setId(Long)}.
 	 */
 	@Test
 	void testSetId() {
@@ -226,7 +224,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#setNombre(String)}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#setNombre(String)}.
 	 */
 	@Test
 	void testSetNombre() {
@@ -240,7 +238,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#setEmail(String)}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#setEmail(String)}.
 	 */
 	@Test
 	void testSetEmail() {
@@ -260,7 +258,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#setPassword(String)}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#setPassword(String)}.
 	 */
 	@Test
 	void testSetPassword() {
@@ -275,7 +273,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#setCreateAt(Date)}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#setCreateAt(Date)}.
 	 */
 	@Test
 	void testSetCreateAt() {
@@ -290,7 +288,7 @@ class AlumnoTest {
 	}
 
 	/**
-	 * Test method for {@link com.jgr.micro.alumnos.models.Alumno#toString()}.
+	 * Test method for {@link com.jgr.alumnos.modelo.models.test.Alumno#toString()}.
 	 */
 	@Test
 	void testToString() {
@@ -305,8 +303,9 @@ class AlumnoTest {
 	 */
 	@Test
 	void testObject() {
+		
 
-		assertTrue(al1.getClass().getCanonicalName().equalsIgnoreCase("com.jgr.micro.alumnos.models.Alumno"),()->"no son iguales");
+		assertTrue(al1.getClass().getCanonicalName().equalsIgnoreCase("com.jgr.alumnos.modelo.models.Alumno"),()->"no son iguales");
 	}
 
 	/**
@@ -318,7 +317,7 @@ class AlumnoTest {
 		al5.setEmail("email5@mail.com");
 		al5.setPassword("password5");
 		al5.setCreateAt(new Date());
-		assertEquals("class com.jgr.micro.alumnos.models.Alumno", al5.getClass().toString(),()->"no es la misma clase");
+		assertEquals("class com.jgr.alumnos.modelo.models.Alumno", al5.getClass().toString(),()->"no es la misma clase");
 
 	}
 
@@ -389,5 +388,5 @@ class AlumnoTest {
 	void testFinalize() {
 //		fail("Not yet implemented"); // TODO
 	}
-
 }
+

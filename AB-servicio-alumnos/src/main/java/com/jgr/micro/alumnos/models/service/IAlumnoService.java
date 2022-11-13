@@ -2,7 +2,7 @@ package com.jgr.micro.alumnos.models.service;
 
 import java.util.Optional;
 
-import com.jgr.micro.alumnos.models.Alumno;
+import com.jgr.alumnos.modelo.models.Alumno;
 
 /**
  * The Interface IAlumnoService.

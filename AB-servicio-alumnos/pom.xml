@@ -27,6 +27,12 @@
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
 	</properties>
 	<dependencies>
+	<!--CLASE ALUMNOS-->
+	<dependency>
+	<groupId>com.jgr.alumnos.modelo</groupId>
+	<artifactId>ZZ-servicio-alumnos-modelo</artifactId>
+	<version>v1</version>
+	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>

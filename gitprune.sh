@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-11 junit alumno"
+message="$(date)2022-11-13 alumno como servicio externo"
 fi
 
 start=`date +%s`

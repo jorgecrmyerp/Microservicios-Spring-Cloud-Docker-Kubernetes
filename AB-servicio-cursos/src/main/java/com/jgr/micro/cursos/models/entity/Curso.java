@@ -20,6 +20,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
+import com.jgr.alumnos.modelo.models.Alumno;
+
 import lombok.AllArgsConstructor;
 
 import lombok.Getter;
