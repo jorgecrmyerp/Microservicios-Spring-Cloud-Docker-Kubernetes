@@ -15,7 +15,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableFeignClients
 @EnableEurekaClient
 @EnableWebMvc//para que funcione swagger
-@EntityScan("com.jgr.alumnos.modelo.models")
+@EntityScan({"com.jgr.alumnos.modelo.models",
+	"com.jgr.micro.cursos.models.entity"
+})
+
 public class AbServicioCursosApplication {
 
 	/**

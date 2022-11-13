@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-13 alumno como servicio externo"
+message="$(date)2022-11-13 YA FUNCIONA GATEWAY CON CLOUD"
 fi
 
 start=`date +%s`

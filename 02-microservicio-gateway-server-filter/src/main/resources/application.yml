@@ -36,6 +36,7 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
+      
 ##  config:
 ##    import: 'optional:configserver:'
 ##    import: configserver:http://localhost:8888
@@ -44,6 +45,8 @@ spring:
     active:
     - dev               
   cloud:
+    config:
+      uri: http://config-server:8888
     gateway:
       routes:
       - id: servicio-alumnos
@@ -69,3 +72,11 @@ spring:
             - AddResponseHeader=token-response, 789abc
             - AddRequestParameter=nombre, elMio
 #           - SetResponseHeader=Content-Type, text/plain  devuelve los datos como como texto plano
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  shutdown:
+      enabled: 'true'      
