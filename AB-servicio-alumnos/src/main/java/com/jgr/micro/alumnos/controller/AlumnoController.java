@@ -66,12 +66,11 @@ public class AlumnoController {
 					array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
 			@ApiResponse(responseCode = "404", description = "No existe", content = @Content) })
 	public ResponseEntity<?> obtenerAlumnoPorIdPathVariable(@PathVariable Long id) {
-
-		logger.debug("***************en pathvariable*****************");
+	
 		Optional<Alumno> al = iAlumnoService.findById(id);
 
 		if (al.isPresent()) {
-			return ResponseEntity.ok(iAlumnoService.findById(id));
+			return ResponseEntity.ok(al.get());
 		}
 		return ResponseEntity.notFound().build();
 
@@ -87,7 +86,6 @@ public class AlumnoController {
 	
 	public ResponseEntity<?> obtenerAlumnoPorIdRequestParam(@RequestParam Long id) {
 
-		logger.debug("******en REQUESTPARAM**************");
 		Optional<Alumno> al = iAlumnoService.findById(id);
 
 		if (al.isPresent()) {

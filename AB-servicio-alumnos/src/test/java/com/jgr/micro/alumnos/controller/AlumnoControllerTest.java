@@ -5,7 +5,9 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.AfterAll;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,17 +47,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(AlumnoController.class)
 class AlumnoControllerTest {
-	
 
-    @Autowired
-    private MockMvc mvc;
+	@Autowired
+	private MockMvc mvc;
 
-    @MockBean
-    private IAlumnoService alumnoService;
+	@MockBean
+	private IAlumnoService alumnoService;
 
-    ObjectMapper objectMapper;
-
-  
+	ObjectMapper objectMapper;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -67,47 +67,92 @@ class AlumnoControllerTest {
 		alumnos.add(Datos.crearAlumno002().orElseThrow());
 		alumnos.add(Datos.crearAlumno003().orElseThrow());
 		when(alumnoService.findAll()).thenReturn(alumnos);
+			
+	}
+
+	@Test
+	void testObtenerAlumnoPorIdPathVariable() throws Exception {
 		
+		mvc.perform(get("/1").contentType(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk())
+		.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+		.andExpect(jsonPath("$.nombre").value("Alumno1"));
+
+		// 1 vez aqui y otra vez dentro del controlador
+		verify(alumnoService, times(1)).findById(1L);
+		
+		mvc.perform(get("/999").contentType(MediaType.APPLICATION_JSON))
+		.andExpect(status().isNotFound());
+		
+		// 1 vez aqui y otra vez dentro del controlador
+		verify(alumnoService, times(1)).findById(1L);
+		
+		
+		
+
 	}
 
 	@Test
 	void testListarAlumnos() throws JsonProcessingException, Exception {
-		
+
 		List<Alumno> alumnos = (List<Alumno>) alumnoService.findAll();
-		
+
 		mvc.perform(get("/").contentType(MediaType.APPLICATION_JSON))
-        // Then
-        .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].persona").value("Andrés"))
-                .andExpect(jsonPath("$[1].persona").value("Jhon"))
-                .andExpect(jsonPath("$[0].saldo").value("1000"))
-                .andExpect(jsonPath("$[1].saldo").value("2000"))
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(content().json(objectMapper.writeValueAsString(alumnos)));
+		// Then
+		.andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
+		.andExpect(jsonPath("$[0].nombre").value("Alumno1"))
+		.andExpect(jsonPath("$[0].password").value("Password1")).andExpect(jsonPath("$[0].id").value(1L))
+		.andExpect(jsonPath("$[1].email").value("email2@mail.com")).andExpect(jsonPath("$", hasSize(3)))
+		.andExpect(content().json(objectMapper.writeValueAsString(alumnos)));
+		assertEquals(3, ((List) alumnoService.findAll()).size());
+		verify(alumnoService, times(3)).findAll();
 
-        verify(alumnoService).findAll();
+	}
+
+	
+
+	@Test
+	void testActualizaAlumno() throws JsonProcessingException, Exception {
+		
+		Alumno al = alumnoService.findById(1L).get();
+		
+		when(alumnoService.save(any())).then(invocation -> {
+			Alumno al2 = invocation.getArgument(0);
+			al2.setNombre("NombreModificado");
+			return al2;
+		});
+		
+		
+		mvc.perform(put("/1").contentType(MediaType.APPLICATION_JSON)
+				 .content(objectMapper.writeValueAsString(al)))
+		  .andExpect(status().isCreated())
+		  .andExpect(jsonPath("$.nombre", is("NombreModificado")));
+		
+		
 		
 	}
 
 	@Test
-	void testObtenerAlumnoPorIdPathVariable() {
-		fail("Not yet implemented"); // TODO
-	}
+	void testAltaAlumno() throws JsonProcessingException, Exception {
+		
+		Alumno al = new Alumno(null,"Nombre4","email4@mail.com","Password4",new Date());
+		
+		when(alumnoService.save(any())).then(invocation -> {
+			Alumno al2 = invocation.getArgument(0);
+			al2.setId(4L);
+			return al2;
+		});
+		
+		 mvc.perform(post("/").contentType(MediaType.APPLICATION_JSON)
+	                .content(objectMapper.writeValueAsString(al)))
+	        // Then
+	                .andExpect(status().isCreated())
+	                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+	                .andExpect(jsonPath("$.nombre", is("Nombre4")))
+	                .andExpect(jsonPath("$.id", is(4)));
+		  verify(alumnoService).save(any());
+	        
 
-	@Test
-	void testObtenerAlumnoPorIdRequestParam() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	void testActualizaAlumno() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	void testAltaAlumno() {
-		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
