@@ -97,7 +97,7 @@ public class CursoController {
 		// Optional<Curso> o = service.findById(id); //solo saca el curso
 		// curso y el detalle de los alumnos relacionados
 		Optional<Curso> o = service.alumnosCursoporIdCurso(id);
-
+		logger.info("En detalle de un curso->"+id);	
 		if (o.isPresent()) {
 			return ResponseEntity.ok(o.get());
 		}

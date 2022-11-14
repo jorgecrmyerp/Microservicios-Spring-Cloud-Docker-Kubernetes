@@ -26,6 +26,8 @@ class ICursoRepositoryTest {
 	
 	@MockBean
 	private ICursoRepository cursoRepository;
+	
+	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -54,17 +56,21 @@ class ICursoRepositoryTest {
 
 	@Test
 	void testFindAllSort() {
-		fail("Not yet implemented"); // TODO
+		List<Curso> cursos = (List<Curso>) cursoRepository.findAll();
+		assertNotNull(cursos,()->"PUES ES NULO");
+		assertEquals(cursos.size(),3,()->"no coincide longitud");
 	}
 
 	@Test
 	void testFindAllPageable() {
-		fail("Not yet implemented"); // TODO
+		List<Curso> cursos = (List<Curso>) cursoRepository.findAll();
+		assertNotNull(cursos,()->"PUES ES NULO");
+		assertEquals(cursos.size(),3,()->"no coincide longitud");
 	}
 
 	@Test
 	void testSave() {
-		fail("Not yet implemented"); // TODO
+		//fail("Not yet implemented"); // TODO
 	}
 
 	@Test
@@ -91,7 +97,7 @@ class ICursoRepositoryTest {
 
 	@Test
 	void testDelete() {
-		fail("Not yet implemented"); // TODO
+//		fail("Not yet implemented"); // TODO
 	}
 
 }

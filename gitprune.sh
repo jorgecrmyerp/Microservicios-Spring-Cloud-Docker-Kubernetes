@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-13 PTE TERMINAR REPOSITORIO"
+message="$(date)2022-11-14 EMPEZANDO CON CONTROLADOR"
 fi
 
 start=`date +%s`

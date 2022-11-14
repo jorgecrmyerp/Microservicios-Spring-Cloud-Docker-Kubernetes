@@ -5,6 +5,8 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -52,8 +54,8 @@ class CursoServiceImplTest {
 		Optional<Curso> curso = cursoRepository.findById(1L);
 		assertTrue(curso.isPresent(), () -> "curso 1 no existe");
 		assertEquals("Curso1", curso.get().getNombre(), () -> "no coincide el curso");
-		List<Alumno> alumnos =new ArrayList<Alumno>();
-		alumnos = curso.get().getAlumnos();		
+		List<Alumno> alumnos =curso.get().getAlumnos();	
+		
 		List<CursoAlumno> cursoAlumno = curso.get().getCursoAlumnos();
 		int longi= cursoAlumno.size();
 		assertEquals(1,longi,()->" no hay un cursoalumno en el curso"+ longi);
@@ -105,12 +107,14 @@ class CursoServiceImplTest {
 	void testDelete() {
 		
 		cursoRepository.deleteById(1L);
+		//lanza error de que no lo encuentra
 		 assertThrows(NoSuchElementException.class, () -> {
-//           cuentaRepository.findByPersona("John").orElseThrow();
 			 cursoRepository.findById(1L).orElseThrow();
        });
 		 
-		 assertEquals(4, ((List)cursoRepository.findAll()).size());
+		 assertEquals(4, ((List<Curso>)cursoRepository.findAll()).size());
+		//
+		 
 	}
 
 	@Test
