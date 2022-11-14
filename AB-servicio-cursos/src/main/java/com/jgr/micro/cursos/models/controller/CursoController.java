@@ -48,12 +48,31 @@ public class CursoController {
 	/** The logger. */
 	private final Logger logger = LoggerFactory.getLogger(CursoController.class);
 
-	
+	@GetMapping("/api/cursos")
+	@Operation(summary = "Lista de los cursos")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Lista de cursos con alumnos asignados y su detalle", content = {
+					@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "No hay cursos", content = @Content) })
+	public ResponseEntity<Iterable<Curso>> listarCursos() {
+		
+		List<Curso> cursos = new ArrayList<>();
+		cursos = (List<Curso>) service.findAll();
+		if (cursos.size() > 0) {
+			return ResponseEntity.ok(cursos);
+
+		} else {
+			return ResponseEntity.notFound().build();
+
+		}
+	}
+
 	@GetMapping
 	@Operation(summary = "Lista de los cursos")
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Lista de cursos con alumnos asignados y su detalle", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "No hay cursos", content = @Content) })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Lista de cursos con alumnos asignados y su detalle", content = {
+					@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "No hay cursos", content = @Content) })
 	public ResponseEntity<Iterable<Curso>> listar() {
 		List<Curso> cursos = new ArrayList<>();
 		cursos = (List<Curso>) service.findAll();
@@ -66,12 +85,12 @@ public class CursoController {
 		}
 	}
 
-	
 	@GetMapping("/por-nombre/")
 	@Operation(summary = "Lista ordenada por nombre de los cursos")
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Lista de cursos con alumnos asignados y su detalle", content = {
-			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-			@ApiResponse(responseCode = "404", description = "No hay cursos", content = @Content) })	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Lista de cursos con alumnos asignados y su detalle", content = {
+					@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "No hay cursos", content = @Content) })
 	public ResponseEntity<Iterable<Curso>> listarPorNombre() {
 		List<Curso> cursos = new ArrayList<>();
 
@@ -86,18 +105,17 @@ public class CursoController {
 		}
 	}
 
-	
 	@GetMapping("/{id}")
 	@Operation(summary = "Detalle de un curso")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Datos del curso", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "No existe el curso", content = @Content) })
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "No existe el curso", content = @Content) })
 	public ResponseEntity<?> detalle(@PathVariable Long id) {
 
 		// Optional<Curso> o = service.findById(id); //solo saca el curso
 		// curso y el detalle de los alumnos relacionados
 		Optional<Curso> o = service.alumnosCursoporIdCurso(id);
-		logger.info("En detalle de un curso->"+id);	
+		logger.info("En detalle de un curso->" + id);
 		if (o.isPresent()) {
 			return ResponseEntity.ok(o.get());
 		}
@@ -105,12 +123,11 @@ public class CursoController {
 		return ResponseEntity.notFound().build();
 	}
 
-
 	@PostMapping("/")
 	@Operation(summary = "Alta de un curso")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Datos del curso dado de alta", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "Error en validacion de los datos", content = @Content) })
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "Error en validacion de los datos", content = @Content) })
 	public ResponseEntity<?> crear(@Valid @RequestBody Curso curso, BindingResult result) {
 
 		if (result.hasErrors()) {
@@ -121,19 +138,18 @@ public class CursoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(cursoDb);
 	}
 
-	
 	@PutMapping("/{id}")
 	@Operation(summary = "Modificacion de un curso")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Datos del curso modificado", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "Curso no existe", content = @Content) })
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "Curso no existe", content = @Content) })
 	public ResponseEntity<?> editar(@Valid @RequestBody Curso curso, BindingResult result, @PathVariable Long id) {
 
 		if (result.hasErrors()) {
 			return validar(result);
 		}
 		Optional<Curso> o = service.findById(id);
-		
+
 		if (o.isPresent()) {
 			Curso cursoDb = o.get();
 			cursoDb.setNombre(curso.getNombre());
@@ -142,16 +158,14 @@ public class CursoController {
 		return ResponseEntity.notFound().build();
 	}
 
-	
 	@DeleteMapping("/{id}")
 	@Operation(summary = "Borrado de un curso")
 	@ApiResponses(value = { @ApiResponse(responseCode = "204", description = "Curso borrado correctamente", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "Curso no existe/errores de validacion", content = @Content) })
-	
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "Curso no existe/errores de validacion", content = @Content) })
+
 	public ResponseEntity<?> eliminar(@PathVariable Long id) {
 
-		
 		Optional<Curso> o = service.findById(id);
 		if (o.isPresent()) {
 			service.delete(o.get().getId());
@@ -160,14 +174,13 @@ public class CursoController {
 		return ResponseEntity.notFound().build();
 	}
 
-
-	
 	@PutMapping("/asignar-alumno/{cursoId}")
 	@Operation(summary = "Asignar alumno YA EXISTENTE a un curso")
-	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Operacion realizada correctamente", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })
-	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Operacion realizada correctamente", content = {
+					@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })
+
 	public ResponseEntity<?> asignarAlumnoCurso(@Valid @RequestBody Alumno alumno, BindingResult result,
 			@PathVariable Long cursoId) {
 
@@ -194,12 +207,12 @@ public class CursoController {
 
 	}
 
-	
 	@DeleteMapping("/borrar-alumno/{cursoId}")
 	@Operation(summary = "Quitar alumno de un curso")
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Operacion realizada correctamente", content = {
+					@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })
 	public ResponseEntity<?> eliminarRelacionAlumnoCurso(@RequestBody Alumno alumno, BindingResult result,
 			@PathVariable Long cursoId) {
 
@@ -213,7 +226,7 @@ public class CursoController {
 		try {
 			alumnoBaja = service.eliminarRelacionAlumnoCurso(alumno, cursoId);
 			logger.debug("borrar alumno id" + alumno.getId() + "-" + cursoId);
-			
+
 			logger.debug("alumnoBaja" + alumnoBaja.get().getId());
 		} catch (FeignException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
@@ -229,16 +242,14 @@ public class CursoController {
 
 	}
 
-
 	@PostMapping("/alta-alumno/{cursoId}")
 	@Operation(summary = "Alta de alumno No existente en curso")
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Operacion realizada correctamente", content = {
+					@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })
 	public ResponseEntity<?> altaAlumnoCurso(@Valid @RequestBody Alumno alumno, BindingResult result,
 			@PathVariable Long cursoId) {
-
-		System.out.println("en alta alumo curso" + alumno.toString());
 
 		if (result.hasErrors()) {
 			return validar(result);
@@ -265,9 +276,10 @@ public class CursoController {
 
 	@DeleteMapping("eliminar-curso-alumno/{id}")
 	@Operation(summary = "Elimina alumno de un curso")
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Operacion realizada correctamente", content = {
-	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
-	@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })	
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Operacion realizada correctamente", content = {
+					@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Curso.class))) }),
+			@ApiResponse(responseCode = "404", description = "Curso/Alumno no existe/errores de validacion", content = @Content) })
 	public ResponseEntity<?> eliminarCursoAlumnoId(@PathVariable Long id) {
 
 		Optional<Curso> o = service.findById(id);
@@ -279,8 +291,6 @@ public class CursoController {
 		return ResponseEntity.notFound().build();
 
 	}
-	
-	
 
 	/**
 	 * Validar.

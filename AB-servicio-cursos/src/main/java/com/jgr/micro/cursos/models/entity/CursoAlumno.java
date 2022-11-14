@@ -27,7 +27,7 @@ import lombok.Setter;
 
 public class CursoAlumno {
 
-	/** The id. */
+	/** The id. curso*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -49,6 +49,12 @@ public class CursoAlumno {
 			return false;
 		CursoAlumno other = (CursoAlumno) obj;
 		return Objects.equals(this.alumnoId, other.alumnoId);
+	}
+
+	@Override
+	public String toString() {
+		return "CursoAlumno [" + (this.id != null ? "id=" + this.id + ", " : "")
+				+ (this.alumnoId != null ? "alumnoId=" + this.alumnoId : "") + "]";
 	}
 
 	

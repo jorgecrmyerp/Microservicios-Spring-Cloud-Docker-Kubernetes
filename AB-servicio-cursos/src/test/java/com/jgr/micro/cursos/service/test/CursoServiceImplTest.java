@@ -22,6 +22,8 @@ import com.jgr.micro.cursos.models.entity.Curso;
 import com.jgr.micro.cursos.models.entity.CursoAlumno;
 import com.jgr.micro.cursos.models.repository.ICursoRepository;
 
+//si falla revisar el pom de h2
+
 @DataJpaTest
 class CursoServiceImplTest {
 	@Autowired

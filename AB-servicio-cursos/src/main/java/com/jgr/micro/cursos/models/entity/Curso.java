@@ -1,5 +1,7 @@
 package com.jgr.micro.cursos.models.entity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -153,9 +155,19 @@ public class Curso {
 
 	@Override
 	public String toString() {
+		
+
+		String strDate ="";
+		if (this.createAt != null) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+		 strDate = dateFormat.format(this.createAt);  
+		}
+		 
 		return "Curso [" + (this.id != null ? "id=" + this.id + ", " : "")
 				+ (this.nombre != null ? "nombre=" + this.nombre + ", " : "")
-				+ (this.createAt != null ? "createAt=" + this.createAt : "") + "]";
+				+ (this.createAt != null ? "createAt=" + strDate : "")
+				+ alumnos.toString()	+ cursoAlumnos.toString()		
+			 +"]";
 	}
 
 	

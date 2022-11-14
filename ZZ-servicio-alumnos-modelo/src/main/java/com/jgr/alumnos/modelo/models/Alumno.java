@@ -1,5 +1,7 @@
 package com.jgr.alumnos.modelo.models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -173,11 +175,19 @@ public class Alumno {
 
 	@Override
 	public String toString() {
+		
+		
+		 String strDate ="";
+		if (this.createAt != null) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+		 strDate = dateFormat.format(this.createAt);  
+		}
+		 
 		return "Alumno [" + (this.id != null ? "id=" + this.id + ", " : "")
 				+ (this.nombre != null ? "nombre=" + this.nombre + ", " : "")
 				+ (this.email != null ? "email=" + this.email + ", " : "")
 				+ (this.password != null ? "password=" + this.password + ", " : "")
-				+ (this.createAt != null ? "createAt=" + this.createAt : "") + "]";
+				+ (this.createAt != null ? "createAt=" + strDate  : "") + "]";
 	}
 
 	
