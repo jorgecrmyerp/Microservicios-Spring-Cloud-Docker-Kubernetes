@@ -1,23 +1,20 @@
 package com.jgr.micro.cursos.service.test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.jgr.alumnos.modelo.models.Alumno;
-import com.jgr.micro.cursos.error.IdNoEncontradoException;
 import com.jgr.micro.cursos.models.entity.Curso;
 import com.jgr.micro.cursos.models.entity.CursoAlumno;
 import com.jgr.micro.cursos.models.repository.ICursoRepository;

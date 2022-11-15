@@ -236,6 +236,90 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "BuscaAlumnoActuatorEnv",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/actuator/env",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"actuator",
+								"env"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaAlumnoActuatorMapping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/actuator/mappings",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"actuator",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaAlumnoActuatorMetrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/actuator/metrics",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"actuator",
+								"metrics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarCursosActuatorMapping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/cursos/actuator/mappings",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"cursos",
+								"actuator",
+								"mappings"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -524,6 +608,27 @@
 							"path": [
 								"servicio-cursos",
 								"dev"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarCursosActuatorMetric",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/cursos/actuator/metrics",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"cursos",
+								"actuator",
+								"metrics"
 							]
 						}
 					},
