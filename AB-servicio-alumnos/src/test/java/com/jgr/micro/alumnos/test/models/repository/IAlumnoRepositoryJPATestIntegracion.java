@@ -11,32 +11,54 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.servlet.ServletContext;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Profile;
+import org.springframework.mock.web.MockServletContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.alumnos.models.repository.IAlumnoRepository;
 
 //@DataJpaTest->da error de configuracion¿????
 
+//
+///**
+// * en esta usamos la bbdd en memoria
+// * si da error asteriscar @EnableWebMvc en la clase MicroAlumnosApplication
+// * https://stackoverflow.com/questions/56248954/spring-boot-datajpatest-causing-no-servletcontext-set-error
+// * *
 
-/**
- * en esta usamos la bbdd en memoria
- * si da error asteriscar @EnableWebMvc en la clase MicroAlumnosApplication
- * */
-//@SpringBootTest
+
+@EnableAutoConfiguration
 @DataJpaTest
-class IAlumnoRepositoryJPATest {
+
+//para ejecutarlo en Coverage as->CoverageConfiguration->Include and Exclude Tags ponerlo o quitarlo
+@Tag("integracion-jpa")
+class IAlumnoRepositoryJPATestIntegracion {
 
 	@Autowired
 	private IAlumnoRepository alumnoRepository;
-
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}

@@ -30,7 +30,6 @@ import com.jgr.micro.alumnos.test.Datos;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-
 class AlumnoControllerTestRestTemplate {
 
 	@Autowired
