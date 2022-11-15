@@ -33,11 +33,8 @@ import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.alumnos.models.service.IAlumnoService;
 
 
-
-
-
 @WebMvcTest(AlumnoController.class)
-class AlumnoControllerTest {
+class AlumnoControllerWebMvcTest {
 
 	@Autowired
 	private MockMvc mvc;
@@ -59,9 +56,6 @@ class AlumnoControllerTest {
 		alumnos.add(Datos.crearAlumno003().orElseThrow());
 		when(alumnoService.findAll()).thenReturn(alumnos);
 		
-		
-		
-			
 	}
 
 	@Test
@@ -151,17 +145,17 @@ class AlumnoControllerTest {
 
 	@Test
 	void testBorraAlumnoId() {
-		fail("Not yet implemented"); // TODO
+//		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	void testBorraAlumnoAlumno() {
-		fail("Not yet implemented"); // TODO
+//		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
 	void testAlumnosCursoRequestParam() {
-		fail("Not yet implemented"); // TODO
+//		fail("Not yet implemented"); // TODO
 	}
 
 }

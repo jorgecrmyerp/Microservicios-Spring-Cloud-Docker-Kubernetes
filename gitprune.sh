@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-14 WEBTESTCLIENT"
+message="$(date)2022-11-15 renombrado webmvctest"
 fi
 
 start=`date +%s`
