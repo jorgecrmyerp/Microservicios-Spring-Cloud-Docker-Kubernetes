@@ -3,7 +3,6 @@ package com.jgr.micro.alumnos.controller;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -34,7 +33,7 @@ import com.jgr.micro.alumnos.models.service.IAlumnoService;
 
 
 @WebMvcTest(AlumnoController.class)
-class AlumnoControllerWebMvcTest {
+class AlumnoControllerWebMvcMockTest {
 
 	@Autowired
 	private MockMvc mvc;
@@ -42,7 +41,7 @@ class AlumnoControllerWebMvcTest {
 	@MockBean
 	private IAlumnoService alumnoService;
 
-	ObjectMapper objectMapper;
+	private ObjectMapper objectMapper;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -75,8 +74,6 @@ class AlumnoControllerWebMvcTest {
 		// 1 vez aqui y otra vez dentro del controlador
 		verify(alumnoService, times(1)).findById(1L);
 		
-		
-		
 
 	}
 
@@ -92,7 +89,7 @@ class AlumnoControllerWebMvcTest {
 		.andExpect(jsonPath("$[0].password").value("Password1")).andExpect(jsonPath("$[0].id").value(1L))
 		.andExpect(jsonPath("$[1].email").value("email2@mail.com")).andExpect(jsonPath("$", hasSize(3)))
 		.andExpect(content().json(objectMapper.writeValueAsString(alumnos)));
-		assertEquals(3, ((List) alumnoService.findAll()).size());
+		assertEquals(3, ((List<Alumno>) alumnoService.findAll()).size());
 		verify(alumnoService, times(3)).findAll();
 
 	}
