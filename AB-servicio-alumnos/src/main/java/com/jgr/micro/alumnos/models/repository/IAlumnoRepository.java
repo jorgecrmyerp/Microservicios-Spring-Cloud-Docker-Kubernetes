@@ -9,7 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.jgr.alumnos.modelo.models.Alumno;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IAlumnosRepository.
  */

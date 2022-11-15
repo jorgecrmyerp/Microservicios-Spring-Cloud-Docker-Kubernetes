@@ -1,4 +1,4 @@
-package com.jgr.micro.alumnos.controller;
+package com.jgr.micro.alumnos.test.controller;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -29,7 +29,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jgr.alumnos.modelo.models.Alumno;
+import com.jgr.micro.alumnos.controller.AlumnoController;
 import com.jgr.micro.alumnos.models.service.IAlumnoService;
+import com.jgr.micro.alumnos.test.Datos;
 
 
 @WebMvcTest(AlumnoController.class)

@@ -1,4 +1,4 @@
-package com.jgr.micro.alumnos.controller;
+package com.jgr.micro.alumnos.test.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -25,6 +25,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import com.jgr.alumnos.modelo.models.Alumno;
+import com.jgr.micro.alumnos.test.Datos;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

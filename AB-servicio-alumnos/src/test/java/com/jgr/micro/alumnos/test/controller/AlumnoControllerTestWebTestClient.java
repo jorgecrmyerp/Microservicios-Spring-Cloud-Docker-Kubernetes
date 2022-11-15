@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jgr.micro.alumnos.controller;
+package com.jgr.micro.alumnos.test.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.jgr.alumnos.modelo.models.Alumno;
-
+import com.jgr.micro.alumnos.test.Datos;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -76,7 +76,7 @@ class AlumnoControllerTestWebTestClient {
 
 	/**
 	 * Test method for
-	 * {@link com.jgr.micro.alumnos.controller.AlumnoController#listarAlumnos()}.
+	 * {@link com.jgr.micro.alumnos.test.controller.AlumnoController#listarAlumnos()}.
 	 */
 	@Test
 	@Order(1)
@@ -90,7 +90,7 @@ class AlumnoControllerTestWebTestClient {
 
 	/**
 	 * Test method for
-	 * {@link com.jgr.micro.alumnos.controller.AlumnoController#obtenerAlumnoPorIdPathVariable(java.lang.Long)}.
+	 * {@link com.jgr.micro.alumnos.test.controller.AlumnoController#obtenerAlumnoPorIdPathVariable(java.lang.Long)}.
 	 * 
 	 * @param respuesta
 	 * @throws JsonProcessingException
@@ -112,7 +112,7 @@ class AlumnoControllerTestWebTestClient {
 
 	/**
 	 * Test method for
-	 * {@link com.jgr.micro.alumnos.controller.AlumnoController#actualizaAlumno(com.jgr.alumnos.modelo.models.Alumno, org.springframework.validation.BindingResult, java.lang.Long)}.
+	 * {@link com.jgr.micro.alumnos.test.controller.AlumnoController#actualizaAlumno(com.jgr.alumnos.modelo.models.Alumno, org.springframework.validation.BindingResult, java.lang.Long)}.
 	 */
 	@Test
 	void testActualizaAlumno() {
@@ -135,7 +135,7 @@ class AlumnoControllerTestWebTestClient {
 
 	/**
 	 * Test method for
-	 * {@link com.jgr.micro.alumnos.controller.AlumnoController#altaAlumno(com.jgr.alumnos.modelo.models.Alumno, org.springframework.validation.BindingResult)}.
+	 * {@link com.jgr.micro.alumnos.test.controller.AlumnoController#altaAlumno(com.jgr.alumnos.modelo.models.Alumno, org.springframework.validation.BindingResult)}.
 	 */
 	@Test
 	void testAltaAlumno() {
@@ -167,7 +167,7 @@ class AlumnoControllerTestWebTestClient {
 
 	/**
 	 * Test method for
-	 * {@link com.jgr.micro.alumnos.controller.AlumnoController#borraAlumnoId(java.lang.Long)}.
+	 * {@link com.jgr.micro.alumnos.test.controller.AlumnoController#borraAlumnoId(java.lang.Long)}.
 	 */
 	@Test
 	@Order(2)

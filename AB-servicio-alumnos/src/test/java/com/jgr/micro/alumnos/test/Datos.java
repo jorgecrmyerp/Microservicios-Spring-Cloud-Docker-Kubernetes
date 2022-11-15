@@ -1,4 +1,4 @@
-package com.jgr.micro.alumnos.controller;
+package com.jgr.micro.alumnos.test;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +12,8 @@ public class Datos {
 	
 	public static Optional<Alumno> crearAlumno001() {		
 		
-		Alumno alumno = new Alumno();		alumno.setId(1L);
+		Alumno alumno = new Alumno();		
+		alumno.setId(1L);
 		alumno.setNombre("Alumno1");
 		alumno.setPassword("Password1");
 		alumno.setEmail("email1@mail.com");
@@ -26,7 +27,7 @@ public class Datos {
 	
 		Alumno alumno = new Alumno();
 	
-		alumno.setId(1L);
+		alumno.setId(2L);
 		alumno.setNombre("Alumno2");
 		alumno.setPassword("Password2");
 		alumno.setEmail("email2@mail.com");
@@ -44,6 +45,17 @@ public class Datos {
 		alumno.setEmail("email3@mail.com");
 		alumno.setCreateAt(new Date());
 		return Optional.ofNullable(alumno);
+	}
+	
+	public static Iterable<Alumno> listaAlumnos(){
+		
+		List<Alumno> alumnos = new ArrayList<>();
+		
+		alumnos.add(crearAlumno001().get());
+		alumnos.add(crearAlumno002().get());
+		alumnos.add(crearAlumno003().get());
+		return alumnos;
+		
 	}
 
 }
