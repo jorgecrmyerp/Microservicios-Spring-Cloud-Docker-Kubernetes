@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -66,7 +67,7 @@ public class GlobalGatewayFilters implements GlobalFilter,Ordered{
 		    exchange.getResponse().getCookies().add("color", ResponseCookie.from("color", "rojo").build());
 
 		    //convierte a texto plano la respuesta
-		    //exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
+		    exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
 		}));
     }
 

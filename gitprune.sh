@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-16 TERMINAR ARREGLAR org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role"
+message="$(date)2022-11-16 no salen bien las fechas"
 fi
 
 start=`date +%s`

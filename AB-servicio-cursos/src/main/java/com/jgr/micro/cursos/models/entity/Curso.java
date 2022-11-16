@@ -155,22 +155,13 @@ public class Curso {
 
 	@Override
 	public String toString() {
-		
-
-		String strDate ="";
-		if (this.createAt != null) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
-		 strDate = dateFormat.format(this.createAt);  
-		}
-		 
 		return "Curso [" + (this.id != null ? "id=" + this.id + ", " : "")
 				+ (this.nombre != null ? "nombre=" + this.nombre + ", " : "")
-				+ (this.createAt != null ? "createAt=" + strDate : "")
-				+ alumnos.toString()	+ cursoAlumnos.toString()		
-			 +"]";
+				+ (this.createAt != null ? "createAt=" + this.createAt + ", " : "")
+				+ (this.cursoAlumnos != null ? "cursoAlumnos=" + this.cursoAlumnos + ", " : "")
+				+ (this.alumnos != null ? "alumnos=" + this.alumnos : "") + "]";
 	}
 
-	
 	
 
 }

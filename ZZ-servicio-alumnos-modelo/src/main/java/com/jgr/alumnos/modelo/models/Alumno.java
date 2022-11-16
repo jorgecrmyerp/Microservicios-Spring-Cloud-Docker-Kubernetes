@@ -2,6 +2,7 @@ package com.jgr.alumnos.modelo.models;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
@@ -71,8 +72,11 @@ public class Alumno {
 	 * @param password
 	 * @param createAt
 	 */
-	public Alumno(Long id, @NotBlank String nombre, @NotEmpty(message = "Email erroneo") @Email String email,
-			@NotBlank String password, Date createAt) {
+	public Alumno(Long id, 
+			@NotBlank String nombre, 
+			@NotEmpty(message = "Email erroneo") @Email String email,
+			@NotBlank String password, 
+			Date createAt) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -196,18 +200,14 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-
-		String strDate = "";
-		if (this.createAt != null) {
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-			strDate = dateFormat.format(this.createAt);
-		}
-
 		return "Alumno [" + (this.id != null ? "id=" + this.id + ", " : "")
 				+ (this.nombre != null ? "nombre=" + this.nombre + ", " : "")
 				+ (this.email != null ? "email=" + this.email + ", " : "")
 				+ (this.password != null ? "password=" + this.password + ", " : "")
-				+ (this.createAt != null ? "createAt=" + strDate : "") + "]";
+				+ (this.createAt != null ? "createAt=" + this.createAt + ", " : "")
+				+ (this.foto != null ? "foto=" + Arrays.toString(this.foto) : "") + "]";
 	}
+
+	
 
 }
