@@ -13,6 +13,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.cursos.models.entity.Curso;
@@ -21,8 +22,9 @@ import com.jgr.micro.cursos.models.repository.ICursoRepository;
 
 //si falla revisar el pom de h2
 
-@DataJpaTest
-class CursoServiceImplTest {
+//@DataJpaTest
+@SpringBootTest
+class CursoServiceImplJPATestIntegracion {
 	@Autowired
 	private ICursoRepository cursoRepository;
 
@@ -105,13 +107,27 @@ class CursoServiceImplTest {
 	@Test
 	void testDelete() {
 		
+		
+		int longitudA = ((List<Curso>)cursoRepository.findAll()).size();
+		List<Curso> cursoAntes=((List<Curso>)cursoRepository.findAll());
+		
+		
+		
+		cursoAntes.forEach(System.out::println);
+		
 		cursoRepository.deleteById(1L);
 		//lanza error de que no lo encuentra
 		 assertThrows(NoSuchElementException.class, () -> {
 			 cursoRepository.findById(1L).orElseThrow();
        });
 		 
-		 assertEquals(4, ((List<Curso>)cursoRepository.findAll()).size());
+		 List<Curso> cursoDespues=((List<Curso>)cursoRepository.findAll());
+		
+		 cursoDespues.forEach(System.out::println);
+		
+		 
+		 int longitudB = ((List<Curso>)cursoRepository.findAll()).size();
+		 assertEquals(longitudA-1, longitudB,()->"no ha ido bien el delete");
 		//
 		 
 	}

@@ -27,7 +27,6 @@ class ICursoRepositoryTest {
 	@MockBean
 	private ICursoRepository cursoRepository;
 	
-	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

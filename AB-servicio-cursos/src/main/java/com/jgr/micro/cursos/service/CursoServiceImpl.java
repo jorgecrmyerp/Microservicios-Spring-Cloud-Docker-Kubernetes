@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jgr.alumnos.modelo.models.Alumno;
@@ -38,6 +39,10 @@ public class CursoServiceImpl implements ICursoService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
+	//si le quitamos esto en junit da error
+	//org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role:
+	//com.jgr.micro.cursos.models.entity.Curso.cursoAlumnos, could not initialize proxy - no Session	
+	//@Transactional(propagation=Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
 	public Iterable<Curso> findAll() {
 		return iCursoRepository.findAll();
 	}

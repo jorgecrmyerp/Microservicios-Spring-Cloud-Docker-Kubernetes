@@ -197,7 +197,7 @@ public class AlumnoController {
 		alDb.setNombre(al.getNombre());
 		alDb.setEmail(al.getEmail());
 		alDb.setPassword(al.getPassword());
-		System.out.println("****ALTA ALUMNO FOTO"+archivo.getBytes());
+
 		
 		if (!archivo.isEmpty()) {
 			alDb.setFoto(archivo.getBytes());
