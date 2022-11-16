@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.jgr.micro.alumnos.test.controller;
 
 import static org.hamcrest.Matchers.hasSize;

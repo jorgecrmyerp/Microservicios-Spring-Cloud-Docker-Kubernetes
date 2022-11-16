@@ -1,44 +1,45 @@
 package com.jgr.micro.alumnos.test.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.*;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.alumnos.test.Datos;
 
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 class AlumnoControllerTestRestTemplate {
 
 	@Autowired
 	private TestRestTemplate testRestTemplate;
 
 	private ObjectMapper objectMapper;
-
-	@LocalServerPort
-	private int puerto;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -72,6 +73,7 @@ class AlumnoControllerTestRestTemplate {
 		
 		assertEquals(8, longitudAntes);
 		assertEquals(1L, listaAlumnos.get(0).getId(), () -> "no coincide el id");
+		//para pasar lo recibido a formato json y poder comparar como string
 		JsonNode json = objectMapper.readTree(objectMapper.writeValueAsString(listaAlumnos));
 		assertEquals("ALUMNO1", json.get(0).path("nombre").asText());
 
@@ -93,7 +95,8 @@ class AlumnoControllerTestRestTemplate {
 
 		// es un post,no envio url,le paso el objeto alumno y nos devuelve un json en
 		// formato string
-		ResponseEntity<Alumno> respuesta = testRestTemplate.postForEntity("/", al, Alumno.class);
+		ResponseEntity<Alumno> respuesta = testRestTemplate.
+				postForEntity("/", al, Alumno.class);
 
 		String jsonString = respuesta.getBody().toString();
 		Alumno alumnoCreado = respuesta.getBody();
@@ -143,9 +146,8 @@ class AlumnoControllerTestRestTemplate {
 		al.setEmail("modificadoEmail@mailnuevo.com");
 
 		// el put no devuelve nada¿??????
-		testRestTemplate.put("/1", Alumno[].class, al, Alumno.class);
-
-		// vuelvo a obtener la lista de alumnos
+		testRestTemplate.put("/1",  al, Alumno.class);
+		
 
 		lista = testRestTemplate.getForEntity("/", Alumno[].class);
 		listaAlumnos=null;

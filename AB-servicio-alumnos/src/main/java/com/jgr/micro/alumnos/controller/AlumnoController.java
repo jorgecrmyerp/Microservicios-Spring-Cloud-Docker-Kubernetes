@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.alumnos.models.service.IAlumnoService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -106,12 +106,17 @@ public class AlumnoController {
 	public ResponseEntity<?> actualizaAlumno(@Valid @RequestBody Alumno al, BindingResult result,
 			@PathVariable Long id) {
 
+		
+		
 		if (result.hasErrors()) {
 			return validar(result);
 		}
 
+		
 		Optional<Alumno> o = iAlumnoService.findById(id);
 
+		
+		
 		if (!o.isPresent()) {
 			logger.debug("Microservicio Alumno->actualizaAlumno");
 			return ResponseEntity.notFound().build();
@@ -119,13 +124,15 @@ public class AlumnoController {
 
 		Alumno alDb = o.get();
 
+		
+		
 		if (!al.getEmail().isEmpty() && !al.getEmail().equalsIgnoreCase(alDb.getEmail())
 				&& iAlumnoService.porEmail(al.getEmail()).isPresent()) {
 			return ResponseEntity.badRequest()
 					.body(Collections.singletonMap("mensaje", "Ya existe un alumno con ese email"));
 
 		}
-
+				
 		alDb.setNombre(al.getNombre());
 		alDb.setEmail(al.getEmail());
 		alDb.setPassword(al.getPassword());
@@ -161,7 +168,7 @@ public class AlumnoController {
 			@ApiResponse(responseCode = "400", description = "Existe un alumno con ese email", content = @Content) })
 	public ResponseEntity<?> altaAlumno(@Valid @RequestBody Alumno al, BindingResult result) {
 
-		System.out.println("en alta alumnos" + al.toString());
+		
 
 		if (result.hasErrors()) {
 			return validar(result);
