@@ -320,6 +320,118 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "AltaAlumnoConFoto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "archivo",
+									"type": "file",
+									"src": "/D:/Microservicios/Microservicios Spring Cloud Eureka & Angular & Mockito/ModeloDatos.JPG"
+								},
+								{
+									"key": "nombre",
+									"value": "nombrefoto",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "emailfoto@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "passwordfoto",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/alumnos/alta-con-foto",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"alta-con-foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VerAlumnoFoto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/ver-foto/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"ver-foto",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizaAlumnoFoto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "nombremodificado",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "passwordmodificada",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "emailmodificado@modificado.com",
+									"type": "text"
+								},
+								{
+									"key": "archivo",
+									"type": "file",
+									"src": "/D:/Microservicios/Chuletas Microservicios/0-REST TEMPLATE DEPRECATED SE USA ResponseEntity.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/api/alumnos/editar-con-foto/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"editar-con-foto",
+								"9"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

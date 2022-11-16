@@ -1,5 +1,6 @@
 package com.jgr.micro.alumnos.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,7 +13,10 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.alumnos.models.service.IAlumnoService;
@@ -48,7 +53,6 @@ public class AlumnoController {
 	@Autowired
 	private IAlumnoService iAlumnoService;
 
-	
 	@GetMapping
 	@Operation(summary = "Lista de todos los alumnos")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Alumnos existentes", content = {
@@ -60,15 +64,13 @@ public class AlumnoController {
 
 	}
 
-	
 	@GetMapping("/{id}")
 	@Operation(summary = "Busqueda de alumnos por path variable")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "existe", content = {
-			@Content(mediaType = "application/json", 
-					array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
 			@ApiResponse(responseCode = "404", description = "No existe", content = @Content) })
 	public ResponseEntity<?> obtenerAlumnoPorIdPathVariable(@PathVariable Long id) {
-	
+
 		Optional<Alumno> al = iAlumnoService.findById(id);
 
 		if (al.isPresent()) {
@@ -78,14 +80,12 @@ public class AlumnoController {
 
 	}
 
-	
-	@GetMapping("/request-param/")	
+	@GetMapping("/request-param/")
 	@Operation(summary = "Busqueda de alumnos por id pero con request param")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "existe", content = {
-			@Content(mediaType = "application/json", 
-					array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
 			@ApiResponse(responseCode = "404", description = "No existe", content = @Content) })
-	
+
 	public ResponseEntity<?> obtenerAlumnoPorIdRequestParam(@RequestParam Long id) {
 
 		Optional<Alumno> al = iAlumnoService.findById(id);
@@ -96,27 +96,20 @@ public class AlumnoController {
 		return ResponseEntity.notFound().build();
 	}
 
-	
 	@PutMapping("/{id}")
 	@Operation(summary = "Actualiza alumno,hay que pasar el id del alumno y en formato alumno todos los datos")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "existe", content = {
-			@Content(mediaType = "application/json", 
-					array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
 			@ApiResponse(responseCode = "404", description = "No existe", content = @Content) })
 	public ResponseEntity<?> actualizaAlumno(@Valid @RequestBody Alumno al, BindingResult result,
 			@PathVariable Long id) {
 
-		
-		
 		if (result.hasErrors()) {
 			return validar(result);
 		}
 
-		
 		Optional<Alumno> o = iAlumnoService.findById(id);
 
-		
-		
 		if (!o.isPresent()) {
 			logger.debug("Microservicio Alumno->actualizaAlumno");
 			return ResponseEntity.notFound().build();
@@ -124,15 +117,13 @@ public class AlumnoController {
 
 		Alumno alDb = o.get();
 
-		
-		
 		if (!al.getEmail().isEmpty() && !al.getEmail().equalsIgnoreCase(alDb.getEmail())
 				&& iAlumnoService.porEmail(al.getEmail()).isPresent()) {
 			return ResponseEntity.badRequest()
 					.body(Collections.singletonMap("mensaje", "Ya existe un alumno con ese email"));
 
 		}
-				
+
 		alDb.setNombre(al.getNombre());
 		alDb.setEmail(al.getEmail());
 		alDb.setPassword(al.getPassword());
@@ -159,16 +150,12 @@ public class AlumnoController {
 		return ResponseEntity.badRequest().body(errores);
 	}
 
-	
 	@PostMapping
 	@Operation(summary = "Alta de alumno")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "alta correcta", content = {
-			@Content(mediaType = "application/json", 
-					array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
 			@ApiResponse(responseCode = "400", description = "Existe un alumno con ese email", content = @Content) })
 	public ResponseEntity<?> altaAlumno(@Valid @RequestBody Alumno al, BindingResult result) {
-
-		
 
 		if (result.hasErrors()) {
 			return validar(result);
@@ -188,15 +175,111 @@ public class AlumnoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(iAlumnoService.save(alDb));
 
 	}
-
+	@PostMapping("/alta-con-foto")
+	@Operation(summary = "Alta de alumno con foto")
+	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "alta correcta", content = {
+	@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+	@ApiResponse(responseCode = "400", description = "Existe un alumno con ese email", content = @Content) })
+	public ResponseEntity<?> altaAlumnoFoto(@Valid Alumno al, BindingResult result,
+	@RequestParam MultipartFile archivo) throws IOException  {
+		
+		if (result.hasErrors()) {
+			return validar(result);
+		}
+		
+		if (!al.getEmail().isEmpty() && iAlumnoService.findByEmail(al.getEmail()).isPresent()) {
+			return ResponseEntity.badRequest()
+					.body(Collections.singletonMap("mensaje", "Ya existe un alumno con ese email"));
+			
+		}
+		
+		Alumno alDb = new Alumno();
+		alDb.setNombre(al.getNombre());
+		alDb.setEmail(al.getEmail());
+		alDb.setPassword(al.getPassword());
+		System.out.println("****ALTA ALUMNO FOTO"+archivo.getBytes());
+		
+		if (!archivo.isEmpty()) {
+			alDb.setFoto(archivo.getBytes());
+		}
+		//return super.creaEntidad(al, result);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(iAlumnoService.save(alDb));
+		
+	}
 	
+	/**
+	 * Ver foto.
+	 *
+	 * @param id the id
+	 * @return the response entity
+	 */
+	@GetMapping("/ver-foto/{id}")
+	@Operation(summary = "ver foto del alumno")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "existe", content = {
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@ApiResponse(responseCode = "404", description = "No existe", content = @Content) })
+	
+	public ResponseEntity<?> verFoto(@PathVariable Long id) {
+
+		Optional<Alumno> o = iAlumnoService.findById(id);
+
+		if (o.isEmpty() || o.get().getFoto() == null) {
+			return ResponseEntity.notFound().build();
+		}
+
+		Resource imagen = new ByteArrayResource(o.get().getFoto());
+
+		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imagen);
+	}
+
+	/**
+	 * Editar con foto.
+	 *
+	 * @param alumno  the alumno
+	 * @param result  the result
+	 * @param id      the id
+	 * @param archivo the archivo
+	 * @return the response entity
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	@PutMapping("/editar-con-foto/{id}")
+	@Operation(summary = "Actualiza alumno y su foto")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "existe", content = {
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@ApiResponse(responseCode = "404", description = "No existe", content = @Content) })
+	public ResponseEntity<?> editarConFoto(@Valid Alumno alumno, BindingResult result, @PathVariable Long id,
+			@RequestParam MultipartFile archivo) throws IOException {
+
+		if (result.hasErrors()) {
+			return this.validar(result);
+		}
+
+		Optional<Alumno> o = iAlumnoService.findById(id);
+
+		if (o.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		Alumno alumnoDb = o.get();
+		alumnoDb.setNombre(alumno.getNombre());
+		alumnoDb.setPassword(alumno.getPassword());
+		alumnoDb.setEmail(alumno.getEmail());
+
+		if (!archivo.isEmpty()) {
+			alumnoDb.setFoto(archivo.getBytes());
+		}
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(iAlumnoService.save(alumnoDb));
+	}
+	
+
 	@DeleteMapping("/{id}")
 	@Operation(summary = "Borrado de alumno por id,borra tambien en cursos")
 	@ApiResponses(value = { @ApiResponse(responseCode = "204", description = "borrado correcto", content = {
-			@Content(mediaType = "application/json", 
-					array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
 			@ApiResponse(responseCode = "404", description = "Ese alumno no existe", content = @Content) })
-	
+
 	public ResponseEntity<?> borraAlumnoId(@PathVariable Long id) {
 
 		Optional<Alumno> o = iAlumnoService.findById(id);
@@ -212,12 +295,10 @@ public class AlumnoController {
 
 	}
 
-	
 	@DeleteMapping("/borra-alumno")
 	@Operation(summary = "Borrado de alumno por alumno,borra tambien en cursos")
 	@ApiResponses(value = { @ApiResponse(responseCode = "204", description = "borrado correcto", content = {
-			@Content(mediaType = "application/json", 
-					array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
 			@ApiResponse(responseCode = "404", description = "Ese alumno no existe", content = @Content) })
 	public ResponseEntity<?> borraAlumnoAlumno(@Valid @RequestBody Alumno al) {
 
@@ -233,28 +314,23 @@ public class AlumnoController {
 
 	}
 
-	
-	@GetMapping("/alumnos-por-curso")	
+	@GetMapping("/alumnos-por-curso")
 	@Operation(summary = "A partir de una lista de alumnos devuelve el curso en el que estan")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "lista de alumnos", content = {
-			@Content(mediaType = "application/json", 
-					array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
+			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Alumno.class))) }),
 			@ApiResponse(responseCode = "204", description = "No hay alumnos", content = @Content) })
 	public ResponseEntity<?> alumnosCursoRequestParam(@RequestParam List<Long> ids) {
 
 		logger.debug("alumnoz-AlumnosCursoREquest->" + ids.get(0));
 		List<Alumno> lista = new ArrayList<>();
 		lista = (List<Alumno>) iAlumnoService.findAllById(ids);
-		
-		if (lista.size()>0) {
-			return ResponseEntity.ok(iAlumnoService.findAllById(ids));			
-		}
-		else {
+
+		if (lista.size() > 0) {
+			return ResponseEntity.ok(iAlumnoService.findAllById(ids));
+		} else {
 			return ResponseEntity.notFound().build();
-			
+
 		}
-
-
 
 	}
 

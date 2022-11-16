@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,43 +19,45 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-// TODO: Auto-generated Javadoc
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The Class Alumno.
  */
 @Entity
-@Table(name="alumnos")
-
+@Table(name = "alumnos")
 
 public class Alumno {
 
-    /** The id. */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	/** The id. */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    /** The nombre. */    
-	@NotBlank//no admite blancos en el nombre,y no puede estar vacio
-    private String nombre;
+	/** The nombre. */
+	@NotBlank // no admite blancos en el nombre,y no puede estar vacio
+	private String nombre;
 
-    /** The email. */
-	@NotEmpty(message="Email erroneo")
+	/** The email. */
+	@NotEmpty(message = "Email erroneo")
 	@Column(unique = true)
 	@Email
-    private String email;
+	private String email;
 
-    /** The password. */	
+	/** The password. */
 	@NotBlank
-    private String password;
-    
-    /** The create at. */
-    @Column(name = "create_at")
+	private String password;
+
+	/** The create at. */
+	@Column(name = "create_at")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
-    
-    
-    
-    /**
+
+	@Lob
+	@JsonIgnore
+	private byte[] foto;
+
+	/**
 	 * 
 	 */
 	public Alumno() {
@@ -78,10 +81,6 @@ public class Alumno {
 		this.createAt = createAt;
 	}
 
-	
-	
-
-    
 	/**
 	 * Pre persist.
 	 */
@@ -160,6 +159,24 @@ public class Alumno {
 		this.createAt = createAt;
 	}
 
+	/**
+	 * @return the foto
+	 */
+	public byte[] getFoto() {
+		return this.foto;
+	}
+
+	/**
+	 * @param foto the foto to set
+	 */
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public Integer getFotoHashCode() {
+		return (this.foto != null) ? this.foto.hashCode() : null;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(createAt, email, id, nombre, password);
@@ -179,20 +196,18 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-		
-		
-		 String strDate ="";
+
+		String strDate = "";
 		if (this.createAt != null) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
-		 strDate = dateFormat.format(this.createAt);  
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+			strDate = dateFormat.format(this.createAt);
 		}
-		 
+
 		return "Alumno [" + (this.id != null ? "id=" + this.id + ", " : "")
 				+ (this.nombre != null ? "nombre=" + this.nombre + ", " : "")
 				+ (this.email != null ? "email=" + this.email + ", " : "")
 				+ (this.password != null ? "password=" + this.password + ", " : "")
-				+ (this.createAt != null ? "createAt=" + strDate  : "") + "]";
+				+ (this.createAt != null ? "createAt=" + strDate : "") + "]";
 	}
 
-	
 }

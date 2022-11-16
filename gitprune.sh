@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-16 FUNCIONA AlumnoControllerTestRestTemplate-testActualizaAlumno"
+message="$(date)2022-11-16 Alta alumnos con foto"
 fi
 
 start=`date +%s`
