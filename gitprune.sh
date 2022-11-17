@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-17 FUNCIONA GATEWAY ANTES DE DOCKER"
+message="$(date)2022-11-17 CONFIG SERVER OK DESDE CLOUD"
 fi
 
 start=`date +%s`

@@ -31,44 +31,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
-      
+    
   profiles:
     active:
-    - dev               
+    - dev            
   cloud:
     config:
       uri: http://config-server:8888
 ##      uri: http://host.docker.internal:8888
-    gateway:
-      routes:
-      - id: servicio-alumnos
-        uri: lb://servicio-alumnos
-        predicates:
-          - Path=/api/alumnos/**
-        filters:
-        ##añadimos este circuitbreaker, en caso de error 500 le manda a otra uri
-            - name: CircuitBreaker
-              args:
-                name: productos
-                statusCodes: 500 ,503
-                fallbackUri: forward:/api/cursos/por-nombre/                   
-            - StripPrefix=2        
-            
-      - id: servicio-cursos
-        uri: lb://servicio-cursos
-        predicates:
-          - Path=/api/cursos/**
-        filters:
-            - StripPrefix=2
-            - AddRequestHeader=token-request, abcdefg
-            - AddResponseHeader=token-response, 789abc
-            - AddRequestParameter=nombre, elMio
-#           - SetResponseHeader=Content-Type, text/plain  devuelve los datos como como texto plano
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  shutdown:
-      enabled: 'true'      

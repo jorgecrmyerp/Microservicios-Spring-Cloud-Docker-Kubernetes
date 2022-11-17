@@ -807,6 +807,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GatewayServerDevProperties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8888/gateway-server/dev",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"gateway-server",
+								"dev"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -886,15 +906,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8888/gateway-server/dev",
+							"raw": "http://localhost:8090/actuator/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8888",
+							"port": "8090",
 							"path": [
-								"gateway-server",
-								"dev"
+								"actuator",
+								""
 							]
 						}
 					},
