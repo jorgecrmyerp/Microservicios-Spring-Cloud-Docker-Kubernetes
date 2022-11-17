@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-17 ahora SI va el configserver"
+message="$(date)2022-11-17 probar gateway con env docker"
 fi
 
 start=`date +%s`
