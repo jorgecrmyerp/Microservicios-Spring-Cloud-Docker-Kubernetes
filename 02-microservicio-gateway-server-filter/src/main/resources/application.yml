@@ -37,5 +37,7 @@ spring:
     - dev            
   cloud:
     config:
-      uri: http://config-server:8888
-##      uri: http://host.docker.internal:8888
+    ##SIN DOCKER
+##      uri: http://config-server:8888
+##      uri: http://host.docker.internal
+        uri: host.docker.internal:config-server

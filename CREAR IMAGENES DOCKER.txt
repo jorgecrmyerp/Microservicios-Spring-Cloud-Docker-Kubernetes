@@ -10,6 +10,7 @@ ENTRYPOINT ["java","-jar","00-microservicio-config-server-V1.jar"]
 
 
 
-3->DESDE LA LINEA DE COMANDOS DE SPRING entramos en el raiz del proyecto y ejecutamos
+3->DESDE LA LINEA DE COMANDOS DE SPRING entramos en el raiz del proyecto y creamos
 docker ->docker build .
+
 
