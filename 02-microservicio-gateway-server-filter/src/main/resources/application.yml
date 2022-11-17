@@ -37,7 +37,7 @@ spring:
     - dev            
   cloud:
     config:
-    ##SIN DOCKER
-##      uri: http://config-server:8888
-##      uri: http://host.docker.internal
-        uri: host.docker.internal:config-server
+##SIN DOCKER
+      uri: http://config-server:8888
+##CON DOCKER ,parece que sin docker¿? tambien va
+##        uri: host.docker.internal:config-server

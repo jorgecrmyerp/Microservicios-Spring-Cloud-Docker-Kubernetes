@@ -14,7 +14,7 @@ ENTRYPOINT ["java","-jar","config-server.jar"]->punto de entrada a la aplicacion
 
 --En el directorio donde esta el Dockerfile
 docker build -t config-server:v1 .
-crea una imagen y el tab que le vamos a dar,como versiones, y el nombre que le dimos al servicio,pero puede ser cualquiera. Luego un espacio y un punto
+crea una imagen y el tag que le vamos a dar,como versiones, y el nombre que le dimos al servicio,pero puede ser cualquiera. Luego un espacio y un punto
 
 
 --Con docker images aparece una lista de las imagenes que tenemos
