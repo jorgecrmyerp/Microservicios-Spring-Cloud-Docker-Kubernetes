@@ -20,6 +20,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -52,6 +53,8 @@ public class Alumno {
 	/** The create at. */
 	@Column(name = "create_at")
 	@Temporal(TemporalType.TIMESTAMP)
+	//saca mejor la fecha en el json de salida
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date createAt;
 
 	@Lob

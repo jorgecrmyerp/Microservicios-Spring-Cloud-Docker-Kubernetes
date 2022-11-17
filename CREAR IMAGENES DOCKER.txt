@@ -1,0 +1,10 @@
+1->BAJAMOS LA IMAGEN DE JAVA, en docker hub imagenes,bajamos la version buscando en tags
+busco la 11 del openjdk
+2->Creo el archivo Dockerfile en la raiz de servicio-alumnos edito el fichero y 
+
+FROM openjdk:11.0->version de java a usar
+WORKDIR /app->directorio de trabajo,ahi copia el jar
+COPY ./target/AB-servicio-alumnos-V1.jar servicio-alumnos.jar. ->desde esta carpeta raiz copiamos el jar a workdir(OJO AL .)
+ENTRYPOINT ["java","-jar","/servicio-productos.jar"]
+3->DESDE LA LINEA DE COMANDOS DE SPRING entramos en el raiz del proyecto y ejecutamos
+docker ->docker build .

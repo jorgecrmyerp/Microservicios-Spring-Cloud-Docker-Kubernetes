@@ -1,0 +1,203 @@
+--creamos el ejecutable con maven
+.\mvnw clean package -DskipTests 
+
+el -DskipTests es para que no haga el test
+
+install lo publica en el directorio local de maven
+
+--creamos fichero Dockerfile en el raiz de la aplicacion,en este caso del configserver
+FROM openjdk:11-> UTILIZA LA IMAGEN DEL JDK 11
+VOLUME /tmp ->donde la va a guardar
+EXPOSE 8888 ->puerto de conexion, sirve para documentar realmente, es donde se conecta el configserver cuando lo iniciamos
+ADD ./target/00000-microservicio-config-server-V1.jar config-server.jar ->directorio y nombre del ejecutable a publicar,nombre y ruta donde lo vamos a guardar en el contenedor
+ENTRYPOINT ["java","-jar","config-server.jar"]->punto de entrada a la aplicacion
+
+--En el directorio donde esta el Dockerfile
+docker build -t config-server:v1 .
+crea una imagen y el tab que le vamos a dar,como versiones, y el nombre que le dimos al servicio,pero puede ser cualquiera. Luego un espacio y un punto
+
+
+--Con docker images aparece una lista de las imagenes que tenemos
+
+--Creamos una red para que se conecten las app
+docker network create red_microservicios
+
+--Creamos contenedor y ejecutamos la imagen 
+docker run -p 8888:8888 --name config-server --network red_microservicios config-server:v1
+
+docker build -t eureka-server:v1 .
+docker run -p 8761:8761 --name eureka-server --network red_microservicios eureka-server:v1
+
+
+
+el primer puerto es para que nosotros podamos acceder desde local,el segundo es el puerto interno en la imagen, el que utiliza el programa que esta dentro,
+el --name es el nombre del contenedor que vamos a crear para poder comunicarse con el,como el nombre del servidor, se va a llamar config-server. el --network es el nombre que le hemos
+dado a la red. Luego ponemos el nombre de la imagen que vamos a ejecutar,nosotros la hemos llamado config-server:V1 
+
+Si ponemos en el navegador o en postman la ruta
+http://localhost:8888/servicio-items/default
+
+aparece la respuesta, el servicio esta levantado
+
+
+--Vemos la lista de contenedores con 
+docker container ls
+
+para ver la lista de los levantados
+docker ps
+
+para ver la lista de todos 
+docker ps -a
+
+
+--Crear imagen y contenedor de MYSQL
+primero me bajo la version que quiero de mysql ->docker pull mysql:8
+
+ejecuto la imagen, uso el mismo puerto en local 3306 que en destino 3306, le pongo de nombre al contenedor micro-mysql8, lo conecto a la red_microservicios 
+-e(para dar valor a la variable de entorno) MYSQL_ROOT_PASSWORD , -e MYSQL_DATABASE para el nombre de la bbdd, mysql:8 es el nombre de la imagen que me he bajado
+
+docker run -p 3306:3306 --name micro-mysql8 --network red_microservicios -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=microservicios_guzman_productos mysql:8
+
+Con esto crea la bbdd y el usuario root, la password tb es root. Una vez conectado dar de alta usuario/password que tenemos en el properties del servicio producto
+
+
+--para conectar el microservicio con la bbdd copiariamos el nombre, en este caso seria micro-mysql8 y lo pondriamos en el properties del servicio correspondiente
+que quedaria asi
+spring.datasource.url=jdbc:mysql://micro-mysql8:3306/microservicios_guzman_productos?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+
+--para crear el microservicio de productos tenemos que conectarlo con la bbdd, lo omitimos con el parametro -DskipTests cuando generamos el jar
+*****IMPORTANTE PARA GENERAR EL JAR DE LOS COMMONS ES QUITAR LAS DEPENDENCIAS QUE TIENEN EN EL POM DE MAVEN****
+
+FROM openjdk:11
+VOLUME /tmp
+ADD ./target/01-microservicio-productos-V1.jar servicio-productos.jar
+ENTRYPOINT ["java","-jar","/servicio-productos.jar"]
+
+Como este no tiene un puerto fijo asignado quitamos el EXPOSE numero_puerto
+
+
+docker build -t servicio-productos:v1 .
+
+*******************IMPORTANTE PARA LOS QUE TIENEN PUERTO ALEATORIO PONEMOS -P (ojo,MAYUSCULA)***********************************
+docker run -P --network red_microservicios servicio-productos:v1
+
+para levantar otro contenedor de la misma imagen repetiriamos
+docker run -P --network red_microservicios servicio-productos:v1
+
+
+--para crear la imagen de zuul
+docker build -t zuul-server:v1 .
+
+ejecutamos la imagen
+docker run -p 8090:8090 --network red_microservicios zuul-server:v1
+
+--para crear la imagen de gateway
+docker build -t gateway-server:v1 .
+
+ejecutamos la imagen
+docker run -p 8090:8090 --network red_microservicios gateway-server:v1
+
+
+--contenedor validacion-usuarios
+creamos .jar
+docker build -t servicio-validacion:v1 .
+
+docker run -P --network red_microservicios servicio-validacion:v1
+
+--para crear la imagen de oauth(autenticacion usuarios)
+creamos el jar .\mvnw clean package -DskipTests 
+docker build -t servicio-autenticacion:v1 .
+
+ejecutamos el contenedor
+docker run -p 9100:9100 --network red_microservicios servicio-autenticacion:v1
+
+
+--contenedor servicio-items
+
+docker build -t servicio-items:v1 .
+
+como este puede tener varios puertos(lo defino en el properties correspondiente le pongo todos los puertos que puede usar)
+docker run -p 8005:8005 -p 8002:8002 -p 8007:8007 --network red_microservicios servicio-items:v1
+
+INSTALANDO RABBITMQ
+
+lo buscamos en docker, la alpine consume menos memoria
+docker pull rabbitmq:3.11-management-alpine
+levantamos la parte web 15672 y el servidor/broker 5672, el nombre se lo damos para que luego se conecte con zipkin y los microservicios_guzman_productos
+
+docker run -p 15672:15672 -p 5672:5672 --name servicios-rabbitmq311 --network red_microservicios rabbitmq:3.11-management-alpine
+
+INSTALANDO ZIPKIN
+
+primero creamos el modelo de datos,se puede usar HeidiSQL.IMPORTANTE CREAR UN USUARIO zipkin/zipkin CON LAS MISMAS AUTORIZACIONES QUE ROOT
+En zipkin.io se puede ver el modelo de datos, zipkin-server
+crear usuario zipkin/password zipkin que es la que le vamos a dar por parametros(ver el fichero zipkin.cmd) y darle privilegios
+en una carpeta copiamos el *.jar de zipkin y copiamos tb un fichero docker
+
+docker build -t servicio-zipkin:v1 .
+
+docker run -p 9411:9411 --name zipkin-server --network red_microservicios -e RABBIT_ADDRESSES=servicios-rabbitmq311:5672 -e STORAGE_TYPE=mysql -e MYSQL_USER=zipkin -e MYSQL_PASS=zipkin -e MYSQL_HOST=micro-mysql8 servicio-zipkin:v1
+
+
+en RABBIT_ADDRESSES lo conectamos la instancia/servicio de rabbitmq y el puerto que le hemos dado
+en STORAGE_TYPE ponemos el tipo de BBDD
+en MYSQL_USER/PASS el usuario/password 
+en MYSQL_HOST el nombre del CONTENEDOR (no el de la imagen) de mysql 
+
+------------------------------------------------------------------------------------------------------------------------
+DOCKER COMPOSE
+------------------------------------------------------------------------------------------------------------------------
+--lista de contenedores en ejecucion
+docker ps -q 
+
+--parar todos los que estan ejecutandose (a mi no me funciona)
+docker stop $(docker ps -q) 
+
+
+version: "3.8" ->version a usar de docker-compose
+services:  ->servicios que vamos a dar de alta
+  config-server: ->nombre del contenedor
+    image: config-server:v1 ->nombre de la imagen que vamos a usar
+    ports:
+      - "8888:8888"  ->el primer puerto es para que nosotros podamos acceder desde local,el segundo es el puerto interno en la imagen
+    restart: always ->en caso de error si reinicia o no
+    networks:
+      - red_microservicios ->red que va a usar
+  eureka-server:
+    image: eureka-server:v1
+    ports:
+      - "8761:8761"  
+    restart: always
+    networks:
+      - red_microservicios
+	micro-mysql8:
+      image: mysql:8
+      ports:
+        - "3306:3306"  
+      restart: always
+      networks:
+      - red_microservicios  
+      environment:
+        MYSQL_DATABASE: microservicios_guzman_productos ->los mismos parametros que usamos cuando lo creamos de la otra manera
+        MYSQL_ROOT_PASSWORD: root
+  servicio-productos:
+    image: servicio-productos:v1
+    restart: always
+    networks:
+      - red_microservicios  
+    depends_on:
+     - config-server
+     - eureka-server
+     - micro-mysql8  	  
+networks:
+  red_microservicios: ->nombre de la red que crea    
+  
+  
+--se ejecuta con docker-compose up  
+
+--en este como tendriamos dependencias de que se levanten todos los servicios antes qeu el de productos para que no falle 
+  los vamos levantando uno a uno  con docker-compose up config-server, docker-compose up eureka-server....
+  
+  
+
+

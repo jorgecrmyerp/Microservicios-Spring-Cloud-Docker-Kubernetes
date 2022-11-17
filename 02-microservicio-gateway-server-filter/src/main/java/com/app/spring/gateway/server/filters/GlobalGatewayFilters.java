@@ -67,7 +67,7 @@ public class GlobalGatewayFilters implements GlobalFilter,Ordered{
 		    exchange.getResponse().getCookies().add("color", ResponseCookie.from("color", "rojo").build());
 
 		    //convierte a texto plano la respuesta
-		    exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
+		    //exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
 		}));
     }
 

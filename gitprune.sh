@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-16 no salen bien las fechas"
+message="$(date)2022-11-17 INTENTO DE SUBIDA"
 fi
 
 start=`date +%s`

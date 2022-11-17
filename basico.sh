@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-17 no salen iben las fechas"
+message="$(date)2022-11-16 FUNCIONA OK"
 fi
 
 git add .

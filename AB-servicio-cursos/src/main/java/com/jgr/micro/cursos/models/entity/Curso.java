@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jgr.alumnos.modelo.models.Alumno;
 
 import lombok.AllArgsConstructor;
@@ -55,6 +56,9 @@ public class Curso {
 	/** The create at. */
 	@Column(name = "create_at")
 	@Temporal(TemporalType.TIMESTAMP)
+	//formatea la fecha 
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createAt;
 
 	/** The curso alumnos. */

@@ -124,6 +124,8 @@ Thumbs.db
 
 ##quito las carpetas de ejecutables
 target/
+*target/
+/target/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse

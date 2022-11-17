@@ -56,7 +56,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n     \r\n        \"nombre\": \"ALUMNO45\",\r\n        \"email\": \"email45@asdf.com\",\r\n        \"password\": \"PASSWORD45\",\r\n        \"createAt\": \"2022-10-29T15:41:00.383+00:00\"\r\n    }",
+							"raw": "{\r\n     \r\n        \"nombre\": \"ALUMNO45\",\r\n        \"email\": \"email45@asdf.com\",\r\n        \"password\": \"PASSWORD45\"\r\n        \r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -465,7 +465,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Curso1\",\r\n    \"createAt\": \"2022-10-29T16:57:45.352+00:00\"\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Curso1\"\r\n   \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -623,7 +623,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \r\n        \"nombre\": \"ALUMNO97\",\r\n        \"email\": \"email97@asdf.com\",\r\n        \"password\": \"PASSWORD1\",\r\n        \"createAt\": \"2022-10-31T15:39:30.344+00:00\"\r\n    }",
+							"raw": " {\r\n        \r\n        \"nombre\": \"ALUMNO97\",\r\n        \"email\": \"email97@asdf.com\",\r\n        \"password\": \"PASSWORD1\"\r\n\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
