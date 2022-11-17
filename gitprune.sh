@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-17 INTENTO DE SUBIDA"
+message="$(date)2022-11-17 FUNCIONA GATEWAY ANTES DE DOCKER"
 fi
 
 start=`date +%s`
