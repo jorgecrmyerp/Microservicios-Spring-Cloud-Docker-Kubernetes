@@ -17,8 +17,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class MicroservicioGatewayApplication {
 	
 	
-	
-	
 
     /**
      * The main method.

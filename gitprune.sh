@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-18 por ahora ok,pte probar host.docker.internal"
+message="$(date)2022-11-18 FUNCIONA GATEWAY CON DOCKER"
 fi
 
 start=`date +%s`

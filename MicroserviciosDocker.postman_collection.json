@@ -413,12 +413,12 @@
 								{
 									"key": "archivo",
 									"type": "file",
-									"src": "/D:/Microservicios/Chuletas Microservicios/0-REST TEMPLATE DEPRECATED SE USA ResponseEntity.jpg"
+									"src": "/D:/Microservicios/Microservicios Spring Cloud Eureka & Angular/anonimus.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:8090/api/alumnos/editar-con-foto/9",
+							"raw": "localhost:8090/api/alumnos/editar-con-foto/1",
 							"host": [
 								"localhost"
 							],
@@ -427,7 +427,27 @@
 								"api",
 								"alumnos",
 								"editar-con-foto",
-								"9"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscaAlumnoPathVariable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"1"
 							]
 						}
 					},
