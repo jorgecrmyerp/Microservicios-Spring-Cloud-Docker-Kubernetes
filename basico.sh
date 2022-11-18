@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-16 FUNCIONA OK"
+message="$(date)2022-11-17 REINICIO PROPERTIES"
 fi
 
 git add .

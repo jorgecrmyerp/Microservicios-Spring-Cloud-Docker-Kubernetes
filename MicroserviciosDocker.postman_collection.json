@@ -919,6 +919,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GatewayActuatorEnv",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/actuator/env",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"actuator",
+								"env"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

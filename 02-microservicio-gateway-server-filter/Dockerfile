@@ -1,7 +1,7 @@
 FROM openjdk:11
 VOLUME /tmp
 EXPOSE 8090
-ADD ./target/02-microservicio-gateway-server-filter-V1.jar gateway-server.jar
+ADD ./target/02-microservicio-gateway-server-V1.jar gateway-server.jar
 ENTRYPOINT ["java", "-jar","gateway-server.jar"]
 
 ##docker build -t gateway-server:v1 .

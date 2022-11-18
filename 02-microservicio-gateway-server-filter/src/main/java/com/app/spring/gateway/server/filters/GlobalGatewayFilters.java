@@ -14,7 +14,7 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
-import brave.Tracer;
+//import brave.Tracer;
 import reactor.core.publisher.Mono;
 
 
@@ -30,8 +30,8 @@ public class GlobalGatewayFilters implements GlobalFilter,Ordered{
     
     
     
-    @Autowired
-    private Tracer tracer;
+//    @Autowired
+//    private Tracer tracer;
     
 
     /**
