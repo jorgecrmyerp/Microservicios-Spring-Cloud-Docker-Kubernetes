@@ -452,6 +452,68 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "ListarAlumnosActuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/actuator",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarAlumnosActuatorMappings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/actuator/mappings",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"actuator",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarAlumnosActuatorConfigProps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/alumnos/actuator/configprops",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"alumnos",
+								"actuator",
+								"configprops"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
