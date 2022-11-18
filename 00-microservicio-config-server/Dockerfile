@@ -1,5 +1,6 @@
 FROM openjdk:11
-WORKDIR /app
+###WORKDIR /app
+VOLUME /tmp
 
 EXPOSE 8888
 ##COPY ./target/00-microservicio-config-server-V1.jar .

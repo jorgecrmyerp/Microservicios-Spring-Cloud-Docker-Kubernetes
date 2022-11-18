@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-17 probar gateway con env docker"
+message="$(date)2022-11-18 por ahora ok,pte probar host.docker.internal"
 fi
 
 start=`date +%s`
