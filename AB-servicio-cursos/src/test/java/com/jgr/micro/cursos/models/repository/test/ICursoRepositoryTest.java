@@ -80,7 +80,7 @@ class ICursoRepositoryTest {
 				()->"Pues no es el mismo nombre->" + nombre);
 		verify(cursoRepository, times(3)).findById(1L);
 		//son el mismo objeto
-		Curso curso = (Curso) ((List) cursoRepository.findAll()).get(0);
+		Curso curso = (Curso) ((List<Curso>) cursoRepository.findAll()).get(0);
 		
 		assertSame(cursoRepository.findById(1L).get(),curso,()->"pues no son iguales");
 	}

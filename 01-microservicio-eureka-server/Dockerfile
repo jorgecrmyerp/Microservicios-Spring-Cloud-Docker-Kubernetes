@@ -1,4 +1,5 @@
-FROM openjdk:11
+##FROM openjdk:11->MAS GRANDE
+FROM eclipse-temurin:11.0.17_8-jdk-alpine
 VOLUME /tmp
 EXPOSE 8761
 ADD ./target/01-microservicio-eureka-server-V1.jar eureka-server.jar

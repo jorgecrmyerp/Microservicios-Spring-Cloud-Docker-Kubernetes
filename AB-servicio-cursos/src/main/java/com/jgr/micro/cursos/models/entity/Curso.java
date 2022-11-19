@@ -1,7 +1,5 @@
 package com.jgr.micro.cursos.models.entity;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,9 +24,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jgr.alumnos.modelo.models.Alumno;
 
 import lombok.AllArgsConstructor;
-
 import lombok.Getter;
-
 import lombok.Setter;
 
 

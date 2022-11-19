@@ -12,11 +12,8 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.jgr.alumnos.modelo.models.Alumno;
 import com.jgr.micro.cursos.models.entity.Curso;
 import com.jgr.micro.cursos.models.entity.CursoAlumno;
 import com.jgr.micro.cursos.models.repository.ICursoRepository;
@@ -57,7 +54,7 @@ class CursoServiceImplJPATestIntegracion {
 		Optional<Curso> curso = cursoRepository.findById(1L);
 		assertTrue(curso.isPresent(), () -> "curso 1 no existe");
 		assertEquals("Curso1", curso.get().getNombre(), () -> "no coincide el curso");
-		List<Alumno> alumnos = curso.get().getAlumnos();
+		
 
 		List<CursoAlumno> cursoAlumno = curso.get().getCursoAlumnos();
 		int longi = cursoAlumno.size();

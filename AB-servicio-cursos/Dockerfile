@@ -1,4 +1,5 @@
-FROM openjdk:11
+##FROM openjdk:11->MAS GRANDE
+FROM eclipse-temurin:11.0.17_8-jdk-alpine
 VOLUME /tmp
 ADD ./target/AB-servicio-cursos-V1.jar servicio-cursos.jar
 ENTRYPOINT ["java", "-jar","servicio-cursos.jar"]

@@ -122,7 +122,7 @@ class IAlumnoRepositoryJPATestIntegracion {
 	@Test
 	void testExistsById() {
 		
-		Optional<Alumno> al = alumnoRepository.findById(1L);
+		
 		boolean existe = alumnoRepository.existsById(1L);
 		assertTrue(existe,()->"deberia existir");
 		

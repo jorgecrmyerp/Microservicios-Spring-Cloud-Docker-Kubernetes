@@ -22,8 +22,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.TestReporter;
+
+
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,8 +42,8 @@ import com.jgr.micro.alumnos.test.Datos;
 @SpringBootTest
 class IAlumnoRepositoryTest {
 
-	private TestInfo testInfo;
-	private TestReporter testReporter;
+	
+	
 
 	@MockBean
 	private IAlumnoRepository alumnoRepository;
