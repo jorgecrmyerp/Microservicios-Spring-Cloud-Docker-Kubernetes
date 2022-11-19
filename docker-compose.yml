@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  config-server:
+    container_name: config-server    
+    build:
+      context: ./00-microservicio-config-server
+      dockerfile: ./Dockerfile
+    ports:
+      - "8888:8888"
+    restart: always
+    networks:
+      - red_microservicios
+networks:
+  red_microservicios:          

@@ -27,7 +27,6 @@ public class GlobalGatewayFilters implements GlobalFilter,Ordered{
     private final Logger logger = LoggerFactory.getLogger(GlobalGatewayFilters.class);
     
     
-    
 //    @Autowired
 //    private Tracer tracer;
     

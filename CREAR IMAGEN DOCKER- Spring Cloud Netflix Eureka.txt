@@ -79,7 +79,7 @@ Como este no tiene un puerto fijo asignado quitamos el EXPOSE numero_puerto
 docker build -t servicio-productos:v1 .
 
 *******************IMPORTANTE PARA LOS QUE TIENEN PUERTO ALEATORIO PONEMOS -P (ojo,MAYUSCULA)***********************************
-docker run -P --network red_microservicios servicio-productos:v1
+docker run -P --network --name servicio-productos red_microservicios servicio-productos:v1
 
 para levantar otro contenedor de la misma imagen repetiriamos
 docker run -P --network red_microservicios servicio-productos:v1
@@ -89,27 +89,27 @@ docker run -P --network red_microservicios servicio-productos:v1
 docker build -t zuul-server:v1 .
 
 ejecutamos la imagen
-docker run -p 8090:8090 --network red_microservicios zuul-server:v1
+docker run -p 8090:8090 --name zuul-server --network red_microservicios zuul-server:v1
 
 --para crear la imagen de gateway
 docker build -t gateway-server:v1 .
 
 ejecutamos la imagen
-docker run -p 8090:8090 --network red_microservicios gateway-server:v1
+docker run -p 8090:8090 --name gateway-server --network red_microservicios gateway-server:v1
 
 
 --contenedor validacion-usuarios
 creamos .jar
 docker build -t servicio-validacion:v1 .
 
-docker run -P --network red_microservicios servicio-validacion:v1
+docker run -P --name servicio-validacion --network red_microservicios servicio-validacion:v1
 
 --para crear la imagen de oauth(autenticacion usuarios)
 creamos el jar .\mvnw clean package -DskipTests 
 docker build -t servicio-autenticacion:v1 .
 
 ejecutamos el contenedor
-docker run -p 9100:9100 --network red_microservicios servicio-autenticacion:v1
+docker run -p 9100:9100 --name servicio-autenticacion --network red_microservicios servicio-autenticacion:v1
 
 
 --contenedor servicio-items
@@ -119,30 +119,19 @@ docker build -t servicio-items:v1 .
 como este puede tener varios puertos(lo defino en el properties correspondiente le pongo todos los puertos que puede usar)
 docker run -p 8005:8005 -p 8002:8002 -p 8007:8007 --network red_microservicios servicio-items:v1
 
-INSTALANDO RABBITMQ
+--------------------------------------------------------------------------------------------------
+PERSISTENCIA DATOS BBDD
+--------------------------------------------------------------------------------------------------
+--tenemos que tener la imagen : docker pull mysql:8
+--cuando creamos el contenedor decimos donde va a guardar los datos
+docker run -p 3306:3306 --name micro-mysql8 --network red_microservicios -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=microservicios_guzman_productos mysql:8
 
-lo buscamos en docker, la alpine consume menos memoria
-docker pull rabbitmq:3.11-management-alpine
-levantamos la parte web 15672 y el servidor/broker 5672, el nombre se lo damos para que luego se conecte con zipkin y los microservicios_guzman_productos
+docker run -p 3306:3306 --name micro-mysql8 --network red_microservicios -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=microservicios_guzman_productos 
+-v data-mysql:/var/lib/mysql --restart=always mysql:8
 
-docker run -p 15672:15672 -p 5672:5672 --name servicios-rabbitmq311 --network red_microservicios rabbitmq:3.11-management-alpine
-
-INSTALANDO ZIPKIN
-
-primero creamos el modelo de datos,se puede usar HeidiSQL.IMPORTANTE CREAR UN USUARIO zipkin/zipkin CON LAS MISMAS AUTORIZACIONES QUE ROOT
-En zipkin.io se puede ver el modelo de datos, zipkin-server
-crear usuario zipkin/password zipkin que es la que le vamos a dar por parametros(ver el fichero zipkin.cmd) y darle privilegios
-en una carpeta copiamos el *.jar de zipkin y copiamos tb un fichero docker
-
-docker build -t servicio-zipkin:v1 .
-
-docker run -p 9411:9411 --name zipkin-server --network red_microservicios -e RABBIT_ADDRESSES=servicios-rabbitmq311:5672 -e STORAGE_TYPE=mysql -e MYSQL_USER=zipkin -e MYSQL_PASS=zipkin -e MYSQL_HOST=micro-mysql8 servicio-zipkin:v1
-
-
-en RABBIT_ADDRESSES lo conectamos la instancia/servicio de rabbitmq y el puerto que le hemos dado
-en STORAGE_TYPE ponemos el tipo de BBDD
-en MYSQL_USER/PASS el usuario/password 
-en MYSQL_HOST el nombre del CONTENEDOR (no el de la imagen) de mysql 
+Con esto crea la bbdd y el usuario root, la password tb es root. Una vez conectado dar de alta usuario/password que tenemos en el properties del servicio prod
+los datos los va a guardar internamente en /var/lib/mysql fuera del contenedor
+con restart=always no se detiene el contenedor cada vez que reiniciamos el pc
 
 ------------------------------------------------------------------------------------------------------------------------
 DOCKER COMPOSE
@@ -153,7 +142,7 @@ docker ps -q
 --parar todos los que estan ejecutandose (a mi no me funciona)
 docker stop $(docker ps -q) 
 
-
+Se crea un archivo docker-compose.yml o docker-compose.yaml
 version: "3.8" ->version a usar de docker-compose
 services:  ->servicios que vamos a dar de alta
   config-server: ->nombre del contenedor
@@ -195,9 +184,34 @@ networks:
   
 --se ejecuta con docker-compose up  
 
---en este como tendriamos dependencias de que se levanten todos los servicios antes qeu el de productos para que no falle 
+--en este como tendriamos dependencias de que se levanten todos los servicios antes que el de productos para que no falle 
   los vamos levantando uno a uno  con docker-compose up config-server, docker-compose up eureka-server....
   
-  
+
+
+INSTALANDO RABBITMQ
+
+lo buscamos en docker, la alpine consume menos memoria
+docker pull rabbitmq:3.11-management-alpine
+levantamos la parte web 15672 y el servidor/broker 5672, el nombre se lo damos para que luego se conecte con zipkin y los microservicios_guzman_productos
+
+docker run -p 15672:15672 -p 5672:5672 --name servicios-rabbitmq311 --network red_microservicios rabbitmq:3.11-management-alpine
+
+INSTALANDO ZIPKIN
+
+primero creamos el modelo de datos,se puede usar HeidiSQL.IMPORTANTE CREAR UN USUARIO zipkin/zipkin CON LAS MISMAS AUTORIZACIONES QUE ROOT
+En zipkin.io se puede ver el modelo de datos, zipkin-server
+crear usuario zipkin/password zipkin que es la que le vamos a dar por parametros(ver el fichero zipkin.cmd) y darle privilegios
+en una carpeta copiamos el *.jar de zipkin y copiamos tb un fichero docker
+
+docker build -t servicio-zipkin:v1 .
+
+docker run -p 9411:9411 --name zipkin-server --network red_microservicios -e RABBIT_ADDRESSES=servicios-rabbitmq311:5672 -e STORAGE_TYPE=mysql -e MYSQL_USER=zipkin -e MYSQL_PASS=zipkin -e MYSQL_HOST=micro-mysql8 servicio-zipkin:v1
+
+
+en RABBIT_ADDRESSES lo conectamos la instancia/servicio de rabbitmq y el puerto que le hemos dado
+en STORAGE_TYPE ponemos el tipo de BBDD
+en MYSQL_USER/PASS el usuario/password 
+en MYSQL_HOST el nombre del CONTENEDOR (no el de la imagen) de mysql 
 
 

@@ -9,3 +9,6 @@ ENTRYPOINT ["java", "-jar","servicio-alumnos.jar"]
 ##docker build -t servicio-alumnos:v1 .
 ##como este NO tiene puerto fijo se lo quitamos cuando lo ejecuta para que lo asigne él 
 ##docker run -P --name servicio-alumnos servicio-alumnos:v1
+
+##para crear la bbdd
+##docker run -p 3306:3306 --name mysql  -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=microservicios_guzman_productos -v data-mysql:/var/lib/mysql --restart=always mysql:8

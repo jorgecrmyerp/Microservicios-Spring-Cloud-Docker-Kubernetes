@@ -1,0 +1,76 @@
+#DEBE LLAMARSE docker-compose.yml
+version: "3.9"
+services:
+  config-server:
+    container_name: config-server
+    image: config-server:v1
+    ports:
+      - "8888:8888"
+    restart: always
+    networks:
+      - red_microservicios
+  eureka-server:
+    container_name: eureka-server
+    image: eureka-server:v1
+    ports:
+      - "8761:8761"  
+    restart: always
+    networks:
+      - red_microservicios
+  mysql:
+      container_name: mysql
+      image: mysql:8
+      ports:
+        - "3306:3306"  
+      restart: always
+      networks:
+      - red_microservicios  
+#nombre de la bbdd y password       
+      environment:
+        MYSQL_DATABASE: microservicios_guzman_productos
+        MYSQL_ROOT_PASSWORD: root
+#aqui guarda los datos para que no se pierdan        
+##      volumes:
+##        - data-mysql:/var/lib/mysql
+      restart: always    
+  gateway-server:
+    container_name: gateway-server
+    image: gateway-server:v1
+    ports:
+      - "8090:8090"
+    restart: always
+    networks:
+      - red_microservicios  
+    depends_on:
+     - config-server
+     - eureka-server
+     - mysql     
+  servicio-alumnos:
+    container_name: servicio-alumnos
+    image: servicio-alumnos:v1
+    restart: always
+    networks:
+      - red_microservicios  
+    depends_on:
+     - config-server
+     - eureka-server
+     - mysql
+     - gateway-server
+#que reinicie si falla alguno
+    restart:  always
+  servicio-cursos:
+    container_name: servicio-cursos
+    image: servicio-cursos:v1
+    restart: always
+    networks:
+      - red_microservicios  
+    depends_on:
+     - config-server
+     - eureka-server
+     - mysql
+     - gateway-server 
+#que reinicie si falla alguno
+    restart:  always            
+#la red es opcional,por defecto todos estarian en la misma       
+networks:
+  red_microservicios:    
