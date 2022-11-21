@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-11-19 CREA Y EJECUTA IMAGEN DOCKER COMPOSE"
+message="$(date)2022-11-21 DOCKER COMPOSE CON TODOS LOS MICROSERVICIOS"
 fi
 
 start=`date +%s`
